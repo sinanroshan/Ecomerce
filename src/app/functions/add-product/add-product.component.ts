@@ -8,20 +8,12 @@ import { ProductApiService } from 'src/app/service/product-api.service';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
+ 
+  ngname:string="";
 
   product:FormGroup=this.fb.group({
     name:['',Validators.required],
     phone:['',[Validators.required,Validators.maxLength(11),Validators.minLength(10)]],
-    address1:[''],
-    address2:[''],
-    mail:['',Validators.email],
-    gstin:[''],
-    type:['',Validators.required],
-    openingbalance:['0',Validators.required],
-    emptype:[''],
-    username:[''],
-    password:[''],
-    confirmpassword:['']
   })
 
   SuperCategoryList:any|[]

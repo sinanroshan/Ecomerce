@@ -1,7 +1,7 @@
 
 <div class="head">Product</div>
 
-<div [formGroup]="product">
+<div>
   <table width="95%">
     <tr><td>Product ID</td></tr>
     <tr><td>itemCode</td>
@@ -10,7 +10,7 @@
         <td><input type="text" formControlName="name" placeholder=""></td></tr>   
     <tr>
             <label>Name:
-                  <input formControlName="product.name">
+                  <input [(ngModel)]="ngname">
             </label>
     <tr> 
       <!-- SELECT SUPER CATEGORY-->     
