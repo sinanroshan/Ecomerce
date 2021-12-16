@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductApiService } from 'src/app/service/product-api.service';
 
 @Component({
@@ -9,28 +9,41 @@ import { ProductApiService } from 'src/app/service/product-api.service';
 })
 export class AddProductComponent implements OnInit {
 
-  newProduct=true;
-  UpdateProduct=false;
+  product:FormGroup=this.fb.group({
+    name:['',Validators.required],
+    phone:['',[Validators.required,Validators.maxLength(11),Validators.minLength(10)]],
+    address1:[''],
+    address2:[''],
+    mail:['',Validators.email],
+    gstin:[''],
+    type:['',Validators.required],
+    openingbalance:['0',Validators.required],
+    emptype:[''],
+    username:[''],
+    password:[''],
+    confirmpassword:['']
+  })
+
   SuperCategoryList:any|[]
   categoryList:any;
+
+  constructor(private productApi : ProductApiService, 
+              public fb: FormBuilder ) { }
   
-  constructor(private productApi : ProductApiService,private fb:FormBuilder,) { }
-  
-  
-  
+
   ngOnInit(): void {
     this.productApi.getSuperCategory().subscribe(res=>{
       this.SuperCategoryList=res;
-      console.log(this.SuperCategoryList)
+      //console.log(this.SuperCategoryList)
     });
-    
-    console.log(this.SuperCategoryList)
   }
 getSubcategory(){
-  console.log("cliked")
   //this.productApi.getProductByCategory(this.productName).subscribe(res=>{
    // this.category=res;
   //})
+}
+Submit(){
+  console.log(this.product);
 }
 
 }
