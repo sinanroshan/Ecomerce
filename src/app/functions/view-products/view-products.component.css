@@ -1,0 +1,32 @@
+.productList{
+    background-color: #EDF3FF;
+}
+#loading {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 99;
+  }  
+.product{
+    background-color: white;
+    margin: auto;
+    margin-top: 15px;
+    width: 90%;
+    border-radius: 5px;
+}
+.pimage{
+    width: 50px;
+    height: 60px;
+}
+.container{
+    margin-left: 5px;
+    margin-right: 20px;
+    width: max-content;
+}

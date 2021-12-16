@@ -1,0 +1,21 @@
+.sidemenu{
+    top: 0;
+    left: 0;
+    width: 100px;
+    height:100%;
+    background-color:  hsl(213, 71%, 34%);
+    position: fixed;
+}
+.icon{
+    height: 10%;
+}
+.component{
+    font-size: 14px;
+    margin: auto;
+    margin-top: 16px;
+    width: 90%;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}

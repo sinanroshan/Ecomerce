@@ -1,0 +1,64 @@
+
+<div class="head">Product</div>
+
+<div *ngIf="newProduct" [formGroup]="product">
+  <table width="95%">
+    <tr><td>Product ID</td></tr>
+    <tr><td>itemCode</td>
+        <td><input placeholder=""></td></tr>
+    <tr><td>Product Name</td>
+        <td><input placeholder=""></td></tr>  
+    <tr> 
+      <!-- SELECT SUPER CATEGORY-->     
+      <td>Super Category</td>
+      <td>
+        <select id="select-type-basic">
+          <option [selected]="true">...</option>
+          <option>
+          {{S.godown_name
+          </option>
+      </select>
+      </td></tr>
+      <tr>      
+        <td>Category</td>
+        <td><select formControlName="unit"
+           class="form-select form-select-sm" aria-label="Select Unit">
+             <option selected value="NOS">NOS</option>
+             <option value="PIECE">PIECE</option>
+             <option value="KG">KG</option>
+             <option value="MG">mg</option>
+             <option value="LITRE">Litre</option>
+        </select></td></tr>  
+      <tr>      
+        <td>Unit</td>
+        <td><select formControlName="unit"
+            class="form-select form-select-sm" aria-label="Select Unit">
+            <option selected value="NOS">NOS</option>
+            <option value="PIECE">PIECE</option>
+            <option value="KG">KG</option>
+            <option value="MG">mg</option>
+            <option value="LITRE">Litre</option>
+        </select></td></tr>    
+    <tr><td>HSNCode</td>
+          <td><input placeholder=""></td></tr>    
+      <tr>
+    <tr><td>Gst %</td>
+          <td><input placeholder="TAX"></td></tr>    
+      <tr>
+    <tr><td>Cess(%)</td>
+          <td><input placeholder=""></td></tr>
+    <tr><td>Opening Stock</td>
+          <td><input placeholder="0"></td></tr>          
+    <tr><td>Min Sock</td>
+          <td><input placeholder="0"></td></tr>
+    <tr><td>Purchase Rate</td>
+          <td><input placeholder="0.00"></td></tr>  
+    <tr><td>Cost</td>
+          <td><input placeholder="0.00"></td></tr>   
+    <tr><td>Retail Rate</td>
+          <td><input placeholder="0.00"></td></tr> 
+    <tr><td>Mrp</td>
+          <td><input placeholder="0.00"></td></tr>                
+  </table>
+  <button>Submit</button>
+</div>

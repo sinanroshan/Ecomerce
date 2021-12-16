@@ -1,0 +1,20 @@
+.bg{
+    padding-top: 12%;
+    padding-bottom: 11%;
+    width: 100%;
+    height:100%;
+    overflow: hidden;
+    background-color: #EBF5FF;
+}
+.login_area{
+    margin:auto;
+    align-items: center;
+    width: 350px;
+    height: 300px;
+    background-color: #ffffff;
+    border:1px solid rgb(219, 219, 219);
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    box-shadow: 0 0 20px #6495ED;
+    border: .1px solid #6495ED;
+}
