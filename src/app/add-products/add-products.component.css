@@ -1,0 +1,39 @@
+.product{
+    padding-top: 30px;
+    width: 90%;
+    margin: auto;
+}
+.pid{
+    width:40%;
+}
+.label{
+    background-color: antiquewhite;
+    width: 100px;
+}
+.name{
+    width: 70%;
+}
+.input_name{
+    width:85%;
+}
+.container{
+    width: 70%;
+    float: left;
+    padding: 10px;
+}
+.left{
+    width: 50%;
+    float: left;
+}
+.right{
+    width: 50%;
+    float: right;
+}
+.input_small{
+    width: 70%;
+}
+#btn_save{
+ background-color: rgb(25, 92, 92);
+ font-size: large;
+ color: white;
+}

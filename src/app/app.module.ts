@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { AddProductsComponent } from './add-products/add-products.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgModule } from '@angular/core';
     LoginComponent,
     HomeComponent,
     ViewProductsComponent,
-    SidebarComponent
+    SidebarComponent,
+    AddProductsComponent,
   ],
   imports: [
     BrowserModule,
