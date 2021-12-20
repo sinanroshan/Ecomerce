@@ -1,11 +1,15 @@
+
 <div *ngIf="loading" class="text-center" id="loading">
     <div class="spinner-border" role="status">
     </div>
   </div>
+  <div>
+      <input type="text (change)=search($event)">
+  </div>
 <div class="productList" >
 <table border="1">
     <tr>
-        <th>Si No.</th>
+        <th>Si No.</th >
         <th>Product</th>
         <th>Name</th>
         <th>Category</th>
@@ -16,8 +20,6 @@
         <th>data table</th>
         <th>data table</th>
         <th>data table</th>
-
-        
     </tr>
     <tr *ngFor="let p of product">
         <td class="container">{{p[47]}}</td>

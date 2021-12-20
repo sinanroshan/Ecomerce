@@ -9,7 +9,8 @@ import { Godown, SubCategory } from '../DataClass/data';
 })
 export class ProductApiService {
 
-  private ip="192.168.1.2"
+  //private ip="192.168.1.2"
+  private ip="localhost";
   private productApi="http://"+this.ip+":9090/";
 
   constructor(private http: HttpClient) { }
@@ -30,7 +31,6 @@ export class ProductApiService {
     return this.http.get(this.productApi+'console/keyword/'+key)
   }
   saveProduct(Product:any):Observable<any>{
-    //console.log(Product);
-    return this.http.post(this.productApi+'console/AddProduct/',Product);
+    return this.http.post(this.productApi+'console/AddProduct', Product,{responseType: 'text'});
   }
 }

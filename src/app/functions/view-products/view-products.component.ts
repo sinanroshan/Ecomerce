@@ -7,6 +7,8 @@ import { ProductApiService } from 'src/app/service/product-api.service';
   styleUrls: ['./view-products.component.css']
 })
 export class ViewProductsComponent implements OnInit {
+  sortby:any =false;
+  searckKey:any;
 
   product:any;
   loading: boolean = true;
@@ -19,7 +21,15 @@ export class ViewProductsComponent implements OnInit {
     this.productApi.getProductList().subscribe(res=>{
       this.product=res;
       this.loading=false;
-      console.log(this.product)
+      //console.log(this.product)
     });
   }
+  search(event:any){
+    this.searckKey= event.target.value;
+    if(this.searckKey==""){this.getProducts()}
+    //else{
+     // this.product.fil
+   // }
+  }
+
 }

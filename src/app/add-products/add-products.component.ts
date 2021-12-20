@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { Godown, SubCategory } from '../DataClass/data';
 import { ProductApiService } from '../service/product-api.service';
 
@@ -19,29 +19,27 @@ export class AddProductsComponent implements OnInit {
   ListSubCatgory:SubCategory[]=[];
   p_id="";
   p_nameList:any;
-  unit_list: string[]=["PIECE", "PACK", "CENTURY", "BOX", "BOTTLE", "CAN", "NOS", "DOZEN", "DRUM", 
-  "KG", "GRAM", "KILOLITRE", "KM","LITRE", "QUINTAL", "MILILITRE", "METER", 
-  "UNIT", "ROLL", "SET", "SQUARE FEET", "SQUARE METER", "SQUARE YARD", "TABLET",
-   "TONNE", "TUBE", "YARD", "PAIR", "METRIC TON", "BUNDLE"];
+  unit_list: string[]=["PIECE", "PACK", "CENTURY", "BOX", "BOTTLE", "CAN", "NOS", "DOZEN", 
+  "KG", "GRAM","LITRE", "MILILITRE", "METER", "SET", "TUBE", "YARD", "PAIR", "BUNDLE"];
    
 
   product:FormGroup = this.fb.group({
     productID: new FormControl(''),
-    name: new FormControl('',[Validators.required,]),
-    category: new FormControl('',Validators.required),
-    sub_Category: new FormControl('',Validators.required),
-    unit: new FormControl('',Validators.required),
+    name: new FormControl('',[Validators.requiredTrue,Validators.minLength(4)]),
+    category: new FormControl('',Validators.requiredTrue),
+    sub_Category: new FormControl('',Validators.requiredTrue),
+    unit: new FormControl('PIECE',Validators.requiredTrue),
     barcode: new FormControl('',Validators.required),
-    hsn_Code: new FormControl('',Validators.required),
-    gst: new FormControl('',Validators.required),
-    cess: new FormControl('',Validators.required),
-    opening_Stock: new FormControl('',Validators.required),
-    current_Stock: new FormControl('',Validators.required),
-    purchase_Rate: new FormControl('',Validators.required),
+    hsn_Code: new FormControl('0'),
+    gst: new FormControl('',Validators.requiredTrue),
+    cess: new FormControl('0'),
+    opening_Stock: new FormControl('0',Validators.required),
+    current_Stock: new FormControl('0',Validators.requiredTrue),
+    purchase_Rate: new FormControl('',Validators.requiredTrue),
     cost: new FormControl('',Validators.required),
-    retail_Rate: new FormControl('',Validators.required),
-    whole_Rate: new FormControl('',Validators.required),
-    mrp: new FormControl('',Validators.required)
+    retail_Rate: new FormControl('',Validators.requiredTrue),
+    whole_Rate: new FormControl('',Validators.requiredTrue),
+    mrp: new FormControl('',Validators.requiredTrue)
     
 }); 
   constructor(private productService : ProductApiService,private fb:FormBuilder,
@@ -74,6 +72,8 @@ export class AddProductsComponent implements OnInit {
     this.productService.getProductId().subscribe(res=>{
       this.p_id=res;
     });
+    this.product.get('productID')?.setValue(this.p_id);
+    this.product.get('barcode')?.setValue(this.p_id);
   }
 
   onFileUpload(event:any){
@@ -85,15 +85,23 @@ export class AddProductsComponent implements OnInit {
     reader.readAsDataURL(this.selecetdFile);
     }
     OnUploadFile() {
-    //Upload file here send a binary data
     this.http.post('../assets', this.selecetdFile)
-    //.subscribe(...);
+    }
+    setCost(){
+      let prate=this.product.get('purchase_Rate')?.value;
+      let tax= ((this.product.get('gst')?.value) /100 ) * prate;
+      this.product.get('cost')?.setValue(prate + tax);
+    }
+    chekprice(){
+
     }
 
-
   save(){
+    
     this.product.get('productID')?.setValue(this.p_id);
-    this.productService.saveProduct(this.product.value);
     console.log(this.product.value)
+    this.productService.saveProduct(this.product.value).subscribe(res=>{
+      console.log(res)
+    });
   }
 }

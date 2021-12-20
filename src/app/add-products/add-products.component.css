@@ -1,20 +1,35 @@
 .product{
-    padding-top: 30px;
+    padding-top: 50px;
     width: 90%;
     margin: auto;
 }
-.pid{
-    width:40%;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input_pid{
+    width: 100px;
+    border: 1px solid rgba(47, 107, 175, 0.938);
+    background-color: rgba(19, 157, 236, 0.233);
+    font-size: 14px;
+    color: rgb(56, 56, 56);
+    font-weight: 500;
 }
 .label{
-    background-color: antiquewhite;
-    width: 100px;
+    padding-left: 5px;
+    background-color: rgb(212, 236, 255);
+    min-width: 100px;
+    font-weight: 500;
+    font-size: 13px;
 }
 .name{
     width: 70%;
 }
 .input_name{
     width:85%;
+    text-transform: uppercase;
 }
 .container{
     width: 70%;
@@ -30,7 +45,18 @@
     float: right;
 }
 .input_small{
+    width: 55%;
+}
+.cost{
+    width: 115px;
+    border: 1px solid rgb(243, 138, 119);
+}
+.marker{
+    border-bottom: 1px solid black;
     width: 70%;
+    float: left;
+    font-weight: 500;
+    font-size: 13px;
 }
 #btn_save{
  background-color: rgb(25, 92, 92);

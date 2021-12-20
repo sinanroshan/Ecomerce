@@ -13,6 +13,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { AddProductsComponent } from './add-products/add-products.component';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { AddProductsComponent } from './add-products/add-products.component';
     MatSelectModule,
     MatOptionModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    Ng2OrderModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

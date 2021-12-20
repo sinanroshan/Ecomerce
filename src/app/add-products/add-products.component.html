@@ -1,11 +1,12 @@
 <div class="product" [formGroup]="product">
-    <div class="pid">
+    <div>
         <label class="label">Product ID:</label>
-            <input type="text" value="{{p_id}}" formControlName="productID" readonly>
+            <input class="input_pid" type="number" value="{{p_id}}" formControlName="productID" readonly>
     </div>
     <div class="name">
         <label class="label">Name:</label>
         <input class="input_name" type="text"  formControlName="name"  (keyup)="getPnameSugssion($event)"
+        [class.is-invalid]="product.get('name')?.touched && product.get('name')?.invalid"
             id="userIdFirstWay" list="dynmicUserIds">
                 <datalist id="dynmicUserIds">
                 <option *ngFor="let item of p_nameList" [value]="item">{{item}}</option>
@@ -17,7 +18,7 @@
             <select formControlName="category"
             [class.is-invalid]="product.get('category')?.touched && product.get('category')?.invalid"
             class="form-select form-select-sm" aria-label="Select Category" (change)="getSubcategory($event)">
-                <option selected>---Select Category---</option>
+                <option value="" disabled selected hidden>--Select Category--</option>
                 <option *ngFor="let Super of ListGodown" [value]="Super.godown_name">{{Super.godown_name}}</option>
             </select>             
         </span>
@@ -26,7 +27,7 @@
             <select class="input_small" formControlName="sub_Category"
             [class.is-invalid]="product.get('sub_Category')?.touched && product.get('sub_Category')?.invalid"
             class="form-select form-select-sm" aria-label="Select Sub-Category">
-                <option selected>---Select Sub-Category---</option>
+            <option value="" disabled selected hidden>--Select Sub Category--</option>
                 <option *ngFor="let sub of ListSubCatgory" [value]="sub.category">{{sub.category}}</option>
             </select> 
         </span>
@@ -34,79 +35,85 @@
     <div class="container">
             <span class="left">
                 <label class="label">Barcode:</label>
-                    <input class="input_small" type="text" formControlName="barcode">
+                    <input class="input_small" value="{{p_id}}"  type="number" formControlName="barcode">
             </span>
             <span class="right">
                 <label class="label">Unit:</label>
                 <select class="input_small" formControlName="unit"
-                [class.is-invalid]="product.get('unit')?.touched && product.get('unit')?.invalid"
-                class="form-select form-select-sm" aria-label="Select Sub-Category">
-                    <option selected>---Select Unit---</option>
+                    [class.is-invalid]="product.get('unit')?.touched && product.get('unit')?.invalid"
+                    class="form-select form-select-sm" aria-label="Select Sub-Category">
+                    <option value="" disabled selected hidden>---Select Unit---</option>
                     <option *ngFor="let u of unit_list" [value]="u">{{u}}</option>
                 </select> 
             </span>
     </div>
+    <div class="marker">Price Details</div>
     <div class="container">
         <span class="left">
             <label class="label">HSN Code:</label>
-                <input class="input_small" type="text" formControlName="hsn_Code">
+                <input class="input_small" type="number" formControlName="hsn_Code">
         </span>
         <span class="right">
             <label class="label">GST(%):</label>
-            <select formControlName="gst"
+            <select formControlName="gst" (change)=setCost()
             [class.is-invalid]="product.get('gst')?.touched && product.get('gst')?.invalid"
-            class="form-select form-select-sm" aria-label="Select GST(%)">
-                <option selected>---Select GST(%)---</option>
+            class="form-select form-select-sm" aria-label="Select GST(%)" aria-placeholder="Select GST(%)">
+                <option value="" disabled selected hidden>Select GST(%)</option>
                 <option value="5">5</option>
                 <option value="12">12</option>
                 <option value="18">18</option>
                 <option value="28">28</option>
-            </select>    
+                <option selected value=0 >NULL</option>
+            </select>  &nbsp;
+             <label class="">Cess:</label>
+            <input style="width: 60px;" type="number" formControlName="cess"> 
         </span>
     </div>
     <div class="container">
         <span class="left">
-            <label class="label">Cess:</label>
-                <input class="input_small" type="text" formControlName="cess">
-        </span>
-        <span class="right">
-            <label class="label">Opening Stock:</label>
-            <input class="input_small" type="text" formControlName="opening_Stock">
-        </span>
-    </div>
-    <div class="container">
-        <span class="left">
-            <label class="label">Current_Stock:</label>
-                <input class="input_small" type="text" formControlName="current_Stock">
-        </span>
-        <span class="right">
             <label class="label">Purchase Rate:</label>
-            <input class="input_small" type="text" formControlName="purchase_Rate">
+            <input class="input_small" type="number" formControlName="purchase_Rate" (keyup)=setCost()>
+        </span>
+        <span class="right">
+            <label class="label">Cost:</label>
+            <input class="cost" readonly formControlName="cost">
         </span>
     </div>
+
     <div class="container">
         <span class="left">
-            <label class="label">Cost:</label>
-                <input class="input_small" type="text" formControlName="cost">
+            <label class="label">Mrp:</label>
+            <input class="input_small" type="number" formControlName="mrp">
         </span>
         <span class="right">
             <label class="label">Retail Rate:</label>
-            <input class="input_small" type="text" formControlName="retail_Rate">
+            <input class="input_small" type="number" formControlName="retail_Rate">
         </span>
     </div>
 
     <div class="container">
         <span class="left">
             <label class="label">Wholesale Rate:</label>
-                <input class="input_small" type="text" formControlName="whole_Rate">
+                <input class="input_small" type="number" formControlName="whole_Rate">
         </span>
         <span class="right">
-            <label class="label">Mrp:</label>
-            <input class="input_small" type="text" formControlName="mrp">
+
         </span>
-        <input type="file" (change)="onFileUpload($event)" #selectFile>
-        <button (click)="selectFile.click()"  >Select File</button>
-        <button (click)="OnUploadFile()"> uplolad</button>
     </div>
-    <button id="btn_save" (click)=save()>Save</button>
+
+    <div class="marker">Stock Details</div>
+    <div class="container">
+        <span class="left">
+            <label class="label">Opening Stock:</label>
+                <input class="input_small" type="number" formControlName="opening_Stock">
+        </span>
+        <span class="right">
+            <label class="label">Current Stock:</label>
+            <input class="input_small" type="number" formControlName="current_Stock">
+        </span>
+    </div>
 </div>
+       <!-- <input type="file" (change)="onFileUpload($event)" #selectFile>
+        <button (click)="selectFile.click()"  >Select File</button>
+        <button (click)="OnUploadFile()"> uplolad</button> -->
+        <button id="btn_save" (click)=save()>Save</button>
