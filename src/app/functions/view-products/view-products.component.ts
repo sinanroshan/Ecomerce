@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Products } from 'src/app/DataClass/data';
 import { ProductApiService } from 'src/app/service/product-api.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { ProductApiService } from 'src/app/service/product-api.service';
 })
 export class ViewProductsComponent implements OnInit {
   sortby:any =false;
-  searckKey:any;
+  name:any;
 
-  product:any;
+  product:Products[]=[];
   loading: boolean = true;
   constructor(private productApi : ProductApiService) { }
 
@@ -19,17 +20,25 @@ export class ViewProductsComponent implements OnInit {
   }
   getProducts(){
     this.productApi.getProductList().subscribe(res=>{
-      this.product=res;
+      this.product = res;
       this.loading=false;
-      //console.log(this.product)
     });
   }
+  key:string='id';
+  reverse:boolean=false;
+    sort(key:string){
+      this.key=key;
+      this.reverse= !this.reverse;
+  }
   search(event:any){
-    this.searckKey= event.target.value;
-    if(this.searckKey==""){this.getProducts()}
-    //else{
-     // this.product.fil
-   // }
+    this.name= event.target.value;
+    console.log(this.name)
+    if(this.name==""){this.getProducts()}
+    else{
+          this.product=this.product.filter(res=> {
+          return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+        });
+        }
   }
 
 }

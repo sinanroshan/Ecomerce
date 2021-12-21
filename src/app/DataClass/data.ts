@@ -1,23 +1,23 @@
-export interface product{
-    name:string,
-    barcode:string,
-    category:string
-    unit:string,
-    price:number,
-    rate1:number,
-    rate2:number,
-    mrp:number,
-    purchaseDate:string,
-    tax:number,
-    cess:number,
-    hsn:string,
-    qty:number,
-    itemcode:string,
-    incentives:number,
-    openingstock:number,
-    currentstock:number
+export interface Products{
+barcode: string,
+category: string,
+cess: number,
+cost: number,
+current_Stock: number,
+gst: number,
+hsn_Code: number,
+kayImage: string,
+mrp: number,
+name: string,
+opening_Stock: number,
+productID: number,
+purchase_Rate: "19.0",
+retail_Rate: number,
+sub_Category: string,
+unit: string,
+whole_Rate:number,
 }
-export interface editprod{
+export interface Editprod{
     name:string,
     itemCode:string,
     hsnCode:string,

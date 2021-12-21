@@ -3,36 +3,41 @@
     <div class="spinner-border" role="status">
     </div>
   </div>
-  <div>
-      <input type="text (change)=search($event)">
+  <div><label>Search Products: </label>
+      <input type="text" (keyup)="search($event)">
+
   </div>
 <div class="productList" >
 <table border="1">
     <tr>
-        <th>Si No.</th >
-        <th>Product</th>
-        <th>Name</th>
+        <th (click)="sort('barcode')">P ID &nbsp;<i class="fa fa-sort"></i></th >
+        <th >Product</th>
+        <th (click)="sort('name')">Name &nbsp;<i class="fa fa-sort"></i></th>
         <th>Category</th>
+        <th>Sub Category</th>
         <th>Unit</th>
+        <th>Stock</th>
         <th>cost</th>
         <th>Mrp</th>
         <th>Price</th>
-        <th>data table</th>
-        <th>data table</th>
-        <th>data table</th>
+        <th>wholeSale Rate</th>
+        <th>Purchase Rate</th>
+        <th>Tax</th>
     </tr>
-    <tr *ngFor="let p of product">
-        <td class="container">{{p[47]}}</td>
-        <td class="container"><img class="pimage" src="{{p[10]}}" ></td>
-        <td class="container">{{p[0]}}</td>
-        <td class="container">{{p[2]}}</td>
-        <td class="container">{{p[3]}}</td>
-        <td class="container">{{p[48]}}</td>
-        <td class="container">{{p[7]}}</td>
-        <td class="container">{{p[6]}}</td>
-        <td class="container"> data item </td>
-        <td class="container"> data item </td>
-        <td class="container">{{p[0]}}</td>
+    <tr *ngFor="let p of product | orderBy: key: reverse">
+        <td class="container">{{p.barcode}}</td>
+        <td class="container"><img class="pimage" src="{{p.kayImage}}" ></td>
+        <td class="container">{{p.name}}</td>
+        <td class="container">{{p.category}}</td>
+        <td class="container">{{p.sub_Category}}</td>
+        <td class="container">{{p.unit}}</td>
+        <td class="container">{{p.current_Stock}}</td>
+        <td class="container">{{p.cost}}</td>
+        <td class="container">{{p.mrp}}</td>
+        <td class="container">{{p.retail_Rate}}</td>
+        <td class="container">{{p.whole_Rate}}</td>
+        <td class="container"> {{p.purchase_Rate}} </td>
+        <td class="container"> {{p.gst}} </td>
 
     </tr>
 </table>
