@@ -97,11 +97,11 @@ export class AddProductsComponent implements OnInit {
     }
 
   save(){
-    
     this.product.get('productID')?.setValue(this.p_id);
     console.log(this.product.value)
     this.productService.saveProduct(this.product.value).subscribe(res=>{
       console.log(res)
     });
   }
+
 }

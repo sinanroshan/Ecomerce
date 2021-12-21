@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ViewProductsComponent } from './functions/view-products/view-products.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
@@ -16,6 +15,7 @@ import { AddProductsComponent } from './add-products/add-products.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TopbarComponent } from './topbar/topbar.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +23,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LoginComponent,
     HomeComponent,
     ViewProductsComponent,
-    SidebarComponent,
     AddProductsComponent,
+    TopbarComponent,
   ],
   imports: [
     BrowserModule,

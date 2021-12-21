@@ -4,27 +4,31 @@
     </div>
   </div>
   <div><label>Search Products: </label>
-      <input type="text" (keyup)="search($event)">
+      <input type="text" (keyup.enter)="search($event)">
 
   </div>
 <div class="productList" >
-<table border="1">
-    <tr>
+<table class="table  table-striped table-hover" style="width: 100%;">
+    <thead class="table-dark">
+        <tr table-dark>
         <th (click)="sort('barcode')">P ID &nbsp;<i class="fa fa-sort"></i></th >
         <th >Product</th>
         <th (click)="sort('name')">Name &nbsp;<i class="fa fa-sort"></i></th>
-        <th>Category</th>
-        <th>Sub Category</th>
-        <th>Unit</th>
-        <th>Stock</th>
-        <th>cost</th>
-        <th>Mrp</th>
-        <th>Price</th>
-        <th>wholeSale Rate</th>
-        <th>Purchase Rate</th>
-        <th>Tax</th>
-    </tr>
-    <tr *ngFor="let p of product | orderBy: key: reverse">
+        <th>Category </th>
+        <th (click)="sort('sub_Category')">Sub Category &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('unit')">Unit &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('current_Stock')">Stock &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('cost')">cost &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('mrp')">Mrp &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('retail_Rate')">Price &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('whole_Rate')">wholeSale Rate &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('purchase_Rate')">Purchase Rate &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('gst')">Tax &nbsp;<i class="fa fa-sort"></i></th>
+        <th class="edit"></th>
+        </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let p of product | orderBy: key: reverse | paginate{itemsPerPage:5,currentPage:page};">
         <td class="container">{{p.barcode}}</td>
         <td class="container"><img class="pimage" src="{{p.kayImage}}" ></td>
         <td class="container">{{p.name}}</td>
@@ -36,10 +40,13 @@
         <td class="container">{{p.mrp}}</td>
         <td class="container">{{p.retail_Rate}}</td>
         <td class="container">{{p.whole_Rate}}</td>
-        <td class="container"> {{p.purchase_Rate}} </td>
-        <td class="container"> {{p.gst}} </td>
+        <td class="container">{{p.purchase_Rate}} </td>
+        <td class="container">{{p.gst}} </td>
+        <td><button (click)=editProduct(p) >Edit</button></td>
 
     </tr>
+</tbody>
+<pagination-controls (pageChange)="page= $event"></pagination-controls>
 </table>
 
 

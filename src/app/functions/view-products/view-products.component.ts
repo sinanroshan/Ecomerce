@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Products } from 'src/app/DataClass/data';
+import { Editprod, Products } from 'src/app/DataClass/data';
 import { ProductApiService } from 'src/app/service/product-api.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { ProductApiService } from 'src/app/service/product-api.service';
 export class ViewProductsComponent implements OnInit {
   sortby:any =false;
   name:any;
+  page:number = 1;
 
   product:Products[]=[];
   loading: boolean = true;
@@ -37,8 +38,10 @@ export class ViewProductsComponent implements OnInit {
     else{
           this.product=this.product.filter(res=> {
           return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
-        });
+          });
         }
   }
-
+  editProduct(editProduct:Editprod){
+    console.log(editProduct)
+  }
 }
