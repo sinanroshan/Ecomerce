@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Godown, SubCategory } from '../DataClass/data';
 import { ProductApiService } from '../service/product-api.service';
 
@@ -10,11 +11,11 @@ import { ProductApiService } from '../service/product-api.service';
   styleUrls: ['./add-products.component.css']
 })
 export class AddProductsComponent implements OnInit {
-
+  url:any;
+  EditProduct:boolean=false;
+  updatekey:any;
   selecetdFile : any;
   imagePreview: any;
-  
-
   ListGodown:Godown[]=[];
   ListSubCatgory:SubCategory[]=[];
   p_id="";
@@ -22,12 +23,11 @@ export class AddProductsComponent implements OnInit {
   unit_list: string[]=["PIECE", "PACK", "CENTURY", "BOX", "BOTTLE", "CAN", "NOS", "DOZEN", 
   "KG", "GRAM","LITRE", "MILILITRE", "METER", "SET", "TUBE", "YARD", "PAIR", "BUNDLE"];
    
-
   product:FormGroup = this.fb.group({
     productID: new FormControl(''),
     name: new FormControl('',[Validators.requiredTrue,Validators.minLength(4)]),
-    category: new FormControl('',Validators.requiredTrue),
-    sub_Category: new FormControl('',Validators.requiredTrue),
+    category: new FormControl(null,Validators.requiredTrue),
+    sub_Category: new FormControl(null,Validators.requiredTrue),
     unit: new FormControl('PIECE',Validators.requiredTrue),
     barcode: new FormControl('',Validators.required),
     hsn_Code: new FormControl('0'),
@@ -39,15 +39,24 @@ export class AddProductsComponent implements OnInit {
     cost: new FormControl('',Validators.required),
     retail_Rate: new FormControl('',Validators.requiredTrue),
     whole_Rate: new FormControl('',Validators.requiredTrue),
-    mrp: new FormControl('',Validators.requiredTrue)
-    
+    mrp: new FormControl('',Validators.requiredTrue),
+    kayImage: new FormControl(''),
 }); 
   constructor(private productService : ProductApiService,private fb:FormBuilder,
-                private http: HttpClient ) { }
+                private http: HttpClient,private router:Router,private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    this.getCategory();
-    this.pid();
+    this.url = this.router.url;     
+     this.getCategory();
+    if(this.url== "/product/inventory"){
+      this.pid();
+    }else{
+      let a:any =this.route.snapshot.paramMap.get('edit');
+      this.EditProduct=true;
+      this.product.setValue(JSON.parse(atob(a)))
+      this.updatekey=this.product.get('name')?.value;
+      console.log(this.product.value);
+    }
   }
   getCategory(){
     this.productService.getSuperCategory().subscribe( res=>{
@@ -93,13 +102,24 @@ export class AddProductsComponent implements OnInit {
       this.product.get('cost')?.setValue(prate + tax);
     }
     chekprice(){
-
     }
-
+    Submit(){
+      if(this.EditProduct){
+        this.UpadteProduct();
+      }else{
+        this.save();
+      }
+    }
   save(){
     this.product.get('productID')?.setValue(this.p_id);
-    console.log(this.product.value)
+    //console.log(this.product.value)
     this.productService.saveProduct(this.product.value).subscribe(res=>{
+      console.log(res)
+    });
+  }
+  UpadteProduct(){
+    console.log(this.product.value)
+    this.productService.UpdateProduct(this.product.value,this.updatekey).subscribe(res=>{
       console.log(res)
     });
   }

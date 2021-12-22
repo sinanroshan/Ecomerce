@@ -33,4 +33,7 @@ export class ProductApiService {
   saveProduct(Product:any):Observable<any>{
     return this.http.post(this.productApi+'console/AddProduct', Product,{responseType: 'text'});
   }
+  UpdateProduct(Product:any, key:any):Observable<any>{
+    return this.http.post(this.productApi+'console/EditProduct/'+key+'/',Product);
+  }
 }

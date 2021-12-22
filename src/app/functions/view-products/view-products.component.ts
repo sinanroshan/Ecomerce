@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Editprod, Products } from 'src/app/DataClass/data';
 import { ProductApiService } from 'src/app/service/product-api.service';
 
@@ -13,8 +14,27 @@ export class ViewProductsComponent implements OnInit {
   page:number = 1;
 
   product:Products[]=[];
+  productBackup:Products[]=[];
   loading: boolean = true;
-  constructor(private productApi : ProductApiService) { }
+
+  config = {
+    itemsPerPage: 6,
+    currentPage: 1,
+    totalItems: this.product.length
+  };
+  public maxSize: number = 7;
+  public directionLinks: boolean = true;
+  public autoHide: boolean = false;
+  public responsive: boolean = true;
+  public labels: any = {
+      previousLabel: '<--',
+      nextLabel: '-->',
+      screenReaderPaginationLabel: 'Pagination',
+      screenReaderPageLabel: 'page',
+      screenReaderCurrentLabel: `You're on page`
+  };
+  constructor(private productApi : ProductApiService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -23,25 +43,33 @@ export class ViewProductsComponent implements OnInit {
     this.productApi.getProductList().subscribe(res=>{
       this.product = res;
       this.loading=false;
+      this.productBackup=this.product;
     });
   }
+
   key:string='id';
   reverse:boolean=false;
-    sort(key:string){
+  sort(key:string){
       this.key=key;
       this.reverse= !this.reverse;
   }
   search(event:any){
     this.name= event.target.value;
     console.log(this.name)
-    if(this.name==""){this.getProducts()}
+    if(this.name==""){
+      this.product=this.productBackup;
+    }
     else{
+          this.product=this.productBackup;
           this.product=this.product.filter(res=> {
           return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
           });
         }
   }
+  onPageChange(event:any){
+    this.config.currentPage = event;
+  }
   editProduct(editProduct:Editprod){
-    console.log(editProduct)
+    this.router.navigate(['/product/inventory', {edit:btoa( JSON.stringify(editProduct))}]);
   }
 }

@@ -36,6 +36,7 @@ export interface Editprod{
     unit: string,
     whole_Rate:number,
 }
+
 export interface Godown{
     godown_name:string,
     //godown:string
