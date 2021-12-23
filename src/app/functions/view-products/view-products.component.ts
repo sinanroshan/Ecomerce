@@ -18,7 +18,7 @@ export class ViewProductsComponent implements OnInit {
   loading: boolean = true;
 
   config = {
-    itemsPerPage: 6,
+    itemsPerPage: 50,
     currentPage: 1,
     totalItems: this.product.length
   };
@@ -27,8 +27,8 @@ export class ViewProductsComponent implements OnInit {
   public autoHide: boolean = false;
   public responsive: boolean = true;
   public labels: any = {
-      previousLabel: '<--',
-      nextLabel: '-->',
+      previousLabel: '<-',
+      nextLabel: '->',
       screenReaderPaginationLabel: 'Pagination',
       screenReaderPageLabel: 'page',
       screenReaderCurrentLabel: `You're on page`

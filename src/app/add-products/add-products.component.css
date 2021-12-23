@@ -28,7 +28,7 @@ input::-webkit-inner-spin-button {
     width: 70%;
 }
 .input_name{
-    width:85%;
+    width:80%;
     text-transform: uppercase;
 }
 .container{
@@ -47,9 +47,12 @@ input::-webkit-inner-spin-button {
 .input_small{
     width: 55%;
 }
+form-select{
+    width: 55%;
+}
 .cost{
     width: 115px;
-    border: 1px solid rgb(243, 138, 119);
+    border: 1px solid rgb(32, 114, 182);
 }
 .marker{
     border-bottom: 1px solid black;

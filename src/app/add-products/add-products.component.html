@@ -12,7 +12,7 @@
                 <option *ngFor="let item of p_nameList" [value]="item">{{item}}</option>
                 </datalist>
     </div>
-    <div class="container">
+    <div class="container row">
         <span class="left">
             <label class="label">Category:</label>
             <select formControlName="category"
@@ -24,7 +24,7 @@
         </span>
         <span class="right">
             <label class="label">Sub Category:</label>
-            <select class="input_small" formControlName="sub_Category"
+            <select formControlName="sub_Category"
             [class.is-invalid]="product.get('sub_Category')?.touched && product.get('sub_Category')?.invalid"
             class="form-select form-select-sm" aria-label="Select Sub-Category">
             <option value="" disabled selected hidden>--Select Sub Category--</option>
@@ -32,7 +32,7 @@
             </select> 
         </span>
     </div>
-    <div class="container">
+    <div class="container row">
             <span class="left">
                 <label class="label">Barcode:</label>
                     <input class="input_small form-control" value="{{p_id}}"  type="number" formControlName="barcode">
@@ -48,7 +48,7 @@
             </span>
     </div>
     <div class="marker">Price Details</div>
-    <div class="container">
+    <div class="container row">
         <span class="left">
             <label class="label">HSN Code:</label>
                 <input class="input_small form-control" type="number" formControlName="hsn_Code">
@@ -76,25 +76,29 @@
         </span>
         <span class="right">
             <label class="label">Cost:</label>
-            <input class="cost form-control" readonly formControlName="cost">
+            <input class="cost form-control" readonly formControlName="cost"
+            [class.is-invalid]="product.get('cost')?.touched && product.get('cost')?.invalid">
         </span>
     </div>
 
     <div class="container">
         <span class="left">
             <label class="label">Mrp:</label>
-            <input class="input_small form-control" type="number" formControlName="mrp">
+            <input class="input_small form-control" type="number" formControlName="mrp"
+            [class.is-invalid]="product.get('mrp')?.touched && product.get('mrp')?.invalid">
         </span>
         <span class="right">
             <label class="label">Retail Rate:</label>
-            <input class="input_small form-control" type="number" formControlName="retail_Rate">
+            <input class="input_small form-control" type="number" formControlName="retail_Rate"
+            [class.is-invalid]="product.get('retail_Rate')?.touched && product.get('retail_Rate')?.invalid">
         </span>
     </div>
 
     <div class="container">
         <span class="left">
             <label class="label">Wholesale Rate:</label>
-                <input class="input_small form-control" type="number" formControlName="whole_Rate">
+                <input class="input_small form-control" type="number" formControlName="whole_Rate"
+                [class.is-invalid]="product.get('whole_Rate')?.touched && product.get('whole_Rate')?.invalid">
         </span>
     </div>
 
@@ -102,11 +106,13 @@
     <div class="container">
         <span class="left">
             <label class="label">Opening Stock:</label>
-                <input class="input_small form-control" type="number" formControlName="opening_Stock">
+                <input class="input_small form-control" type="number" formControlName="opening_Stock"
+                [class.is-invalid]="product.get('opening_Stock')?.touched && product.get('opening_Stock')?.invalid">
         </span>
         <span class="right">
             <label class="label">Current Stock:</label>
-            <input class="input_small form-control" type="number" formControlName="current_Stock">
+            <input class="input_small form-control" type="number" formControlName="current_Stock"
+            [class.is-invalid]="product.get('current_Stock')?.touched && product.get('current_Stock')?.invalid">
         </span>
     </div>
 </div>

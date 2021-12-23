@@ -26,21 +26,21 @@ export class AddProductsComponent implements OnInit {
    
   product:FormGroup = this.fb.group({
     productID: new FormControl(''),
-    name: new FormControl('',[Validators.requiredTrue,Validators.minLength(4)]),
-    category: new FormControl(null,Validators.requiredTrue),
-    sub_Category: new FormControl(null,Validators.requiredTrue),
-    unit: new FormControl('PIECE',Validators.requiredTrue),
+    name: new FormControl('',[Validators.required,Validators.minLength(4)]),
+    category: new FormControl(null,Validators.required),
+    sub_Category: new FormControl(null,Validators.required),
+    unit: new FormControl('PIECE',Validators.required),
     barcode: new FormControl(null,Validators.required),
     hsn_Code: new FormControl('0'),
-    gst: new FormControl('',Validators.requiredTrue),
+    gst: new FormControl('',Validators.required),
     cess: new FormControl('0'),
     opening_Stock: new FormControl('0',Validators.required),
-    current_Stock: new FormControl('0',Validators.requiredTrue),
-    purchase_Rate: new FormControl('',Validators.requiredTrue),
+    current_Stock: new FormControl('0',Validators.required),
+    purchase_Rate: new FormControl('',Validators.required),
     cost: new FormControl('',Validators.required),
-    retail_Rate: new FormControl('',Validators.requiredTrue),
-    whole_Rate: new FormControl('',Validators.requiredTrue),
-    mrp: new FormControl('',Validators.requiredTrue),
+    retail_Rate: new FormControl(null,[Validators.required]),
+    whole_Rate: new FormControl('',Validators.required),
+    mrp: new FormControl('',Validators.required),
     kayImage: new FormControl(''),
 }); 
   constructor(private productService : ProductApiService,private fb:FormBuilder,
@@ -102,6 +102,9 @@ export class AddProductsComponent implements OnInit {
       let prate=this.product.get('purchase_Rate')?.value;
       let tax= ((this.product.get('gst')?.value) /100 ) * prate;
       this.product.get('cost')?.setValue(prate + tax);
+      //if((this.product.get('cost')?.value)>(this.product.get('retail_Rate')?.value)){
+        //this.product.controls['retail_Rate'].setErrors({ 'incorrect': true});}
+        //else{this.product.controls['retail_Rate'].setErrors({ 'incorrect': false});}
     }
     chekprice(){
     }

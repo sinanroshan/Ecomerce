@@ -1,9 +1,9 @@
-table{
+ table{
     max-height: 84%;
     min-width: 99%;
     overflow: scroll;
-}
-#loading {
+ }
+ #loading {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -16,7 +16,9 @@ table{
     background-color: rgba(255, 255, 255, 0);
     z-index: 99;
   } 
-  
+ th{
+   font-weight: 300;
+ }
 .table-striped>tbody>tr:nth-child(odd)>td{
    background-color: #e2ecff;
  }
