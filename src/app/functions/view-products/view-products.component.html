@@ -4,7 +4,8 @@
     </div>
   </div>
   <div><label>Search Products: </label>
-      <input type="text" (keyup.enter)="search($event)">
+      <input type="text" id="searchKey" (keyup.enter)="search()">
+      <button (click)="search()">Search</button>
 
   </div>
 <div class="productList" >

@@ -1,11 +1,11 @@
 <div class="product" [formGroup]="product">
     <div>
         <label class="label">Product ID:</label>
-            <input class="input_pid" type="number" value="{{p_id}}" formControlName="productID" readonly>
+            <input class="input_pid form-control" type="number" value="{{p_id}}" formControlName="productID" readonly>
     </div>
     <div class="name">
         <label class="label">Name:</label>
-        <input class="input_name" type="text"  formControlName="name"  (keyup)="getPnameSugssion($event)"
+        <input class="input_name form-control" type="text"  formControlName="name"  (keyup)="getPnameSugssion($event)"
         [class.is-invalid]="product.get('name')?.touched && product.get('name')?.invalid"
             id="userIdFirstWay" list="dynmicUserIds">
                 <datalist id="dynmicUserIds">
@@ -35,7 +35,7 @@
     <div class="container">
             <span class="left">
                 <label class="label">Barcode:</label>
-                    <input class="input_small" value="{{p_id}}"  type="number" formControlName="barcode">
+                    <input class="input_small form-control" value="{{p_id}}"  type="number" formControlName="barcode">
             </span>
             <span class="right">
                 <label class="label">Unit:</label>
@@ -51,7 +51,7 @@
     <div class="container">
         <span class="left">
             <label class="label">HSN Code:</label>
-                <input class="input_small" type="number" formControlName="hsn_Code">
+                <input class="input_small form-control" type="number" formControlName="hsn_Code">
         </span>
         <span class="right">
             <label class="label">GST(%):</label>
@@ -66,38 +66,35 @@
                 <option selected value=0 >NULL</option>
             </select>  &nbsp;
              <label class="">Cess:</label>
-            <input style="width: 60px;" type="number" formControlName="cess"> 
+            <input style="width: 60px" class="form-control" type="number" formControlName="cess"> 
         </span>
     </div>
     <div class="container">
         <span class="left">
             <label class="label">Purchase Rate:</label>
-            <input class="input_small" type="number" formControlName="purchase_Rate" (keyup)=setCost()>
+            <input class="input_small form-control" type="number" formControlName="purchase_Rate" (keyup)=setCost()>
         </span>
         <span class="right">
             <label class="label">Cost:</label>
-            <input class="cost" readonly formControlName="cost">
+            <input class="cost form-control" readonly formControlName="cost">
         </span>
     </div>
 
     <div class="container">
         <span class="left">
             <label class="label">Mrp:</label>
-            <input class="input_small" type="number" formControlName="mrp">
+            <input class="input_small form-control" type="number" formControlName="mrp">
         </span>
         <span class="right">
             <label class="label">Retail Rate:</label>
-            <input class="input_small" type="number" formControlName="retail_Rate">
+            <input class="input_small form-control" type="number" formControlName="retail_Rate">
         </span>
     </div>
 
     <div class="container">
         <span class="left">
             <label class="label">Wholesale Rate:</label>
-                <input class="input_small" type="number" formControlName="whole_Rate">
-        </span>
-        <span class="right">
-
+                <input class="input_small form-control" type="number" formControlName="whole_Rate">
         </span>
     </div>
 
@@ -105,11 +102,11 @@
     <div class="container">
         <span class="left">
             <label class="label">Opening Stock:</label>
-                <input class="input_small" type="number" formControlName="opening_Stock">
+                <input class="input_small form-control" type="number" formControlName="opening_Stock">
         </span>
         <span class="right">
             <label class="label">Current Stock:</label>
-            <input class="input_small" type="number" formControlName="current_Stock">
+            <input class="input_small form-control" type="number" formControlName="current_Stock">
         </span>
     </div>
 </div>

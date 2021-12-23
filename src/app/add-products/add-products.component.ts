@@ -1,3 +1,4 @@
+import { UpperCasePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
@@ -29,7 +30,7 @@ export class AddProductsComponent implements OnInit {
     category: new FormControl(null,Validators.requiredTrue),
     sub_Category: new FormControl(null,Validators.requiredTrue),
     unit: new FormControl('PIECE',Validators.requiredTrue),
-    barcode: new FormControl('',Validators.required),
+    barcode: new FormControl(null,Validators.required),
     hsn_Code: new FormControl('0'),
     gst: new FormControl('',Validators.requiredTrue),
     cess: new FormControl('0'),
@@ -82,7 +83,8 @@ export class AddProductsComponent implements OnInit {
       this.p_id=res;
     });
     this.product.get('productID')?.setValue(this.p_id);
-    this.product.get('barcode')?.setValue(this.p_id);
+    if(this.product.get('barcode')?.value==null){
+    this.product.get('barcode')?.setValue(this.p_id);}
   }
 
   onFileUpload(event:any){
@@ -111,8 +113,9 @@ export class AddProductsComponent implements OnInit {
       }
     }
   save(){
-    this.product.get('productID')?.setValue(this.p_id);
-    //console.log(this.product.value)
+    this.pid();
+    //this.product.get('productID')?.setValue(this.p_id);
+    console.log(this.product.value)
     this.productService.saveProduct(this.product.value).subscribe(res=>{
       console.log(res)
     });

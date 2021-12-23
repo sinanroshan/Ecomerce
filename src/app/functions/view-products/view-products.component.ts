@@ -53,9 +53,8 @@ export class ViewProductsComponent implements OnInit {
       this.key=key;
       this.reverse= !this.reverse;
   }
-  search(event:any){
-    this.name= event.target.value;
-    console.log(this.name)
+  search(){
+    this.name= (<HTMLInputElement>document.getElementById('searchKey')).value;
     if(this.name==""){
       this.product=this.productBackup;
     }
