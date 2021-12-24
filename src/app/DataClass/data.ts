@@ -6,7 +6,7 @@ cost: number,
 current_Stock: number,
 gst: number,
 hsn_Code: number,
-kayImage: string,
+KayImage: string,
 mrp: number,
 name: string,
 opening_Stock: number,
@@ -35,6 +35,7 @@ export interface Editprod{
     sub_Category: string,
     unit: string,
     whole_Rate:number,
+    KayImage:string;
 }
 
 export interface Godown{

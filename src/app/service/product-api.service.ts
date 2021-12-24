@@ -30,8 +30,9 @@ export class ProductApiService {
   getSugessionList(key:string){
     return this.http.get(this.productApi+'console/keyword/'+key)
   }
-  saveProduct(Product:any):Observable<any>{
-    return this.http.post(this.productApi+'console/AddProduct', Product,{responseType: 'text'});
+  saveProduct(Product:any,ImageSet:any):Observable<any>{
+    console.log(Product);
+    return this.http.post(this.productApi+'console/AddProduct',{ImageSet,Product},{responseType: 'text'});
   }
   UpdateProduct(Product:any, key:any):Observable<any>{
     return this.http.post(this.productApi+'console/EditProduct/'+key+'/',Product,{responseType: 'text'});

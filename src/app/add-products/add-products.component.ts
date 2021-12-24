@@ -15,7 +15,11 @@ export class AddProductsComponent implements OnInit {
   url:any;
   EditProduct:boolean=false;
   updatekey:any;
-  selecetdFile : any;
+  KeyImg : any;
+  image1:any;
+  image2:any;
+  image3:any;
+  image4:any;
   imagePreview: any;
   ListGodown:Godown[]=[];
   ListSubCatgory:SubCategory[]=[];
@@ -41,11 +45,9 @@ export class AddProductsComponent implements OnInit {
     retail_Rate: new FormControl(null,[Validators.required]),
     whole_Rate: new FormControl('',Validators.required),
     mrp: new FormControl('',Validators.required),
-    kayImage: new FormControl(''),
 }); 
   constructor(private productService : ProductApiService,private fb:FormBuilder,
                 private http: HttpClient,private router:Router,private route: ActivatedRoute ) { }
-
   ngOnInit(): void {
     this.url = this.router.url;     
      this.getCategory();
@@ -58,6 +60,7 @@ export class AddProductsComponent implements OnInit {
       this.updatekey=this.product.get('name')?.value;
       console.log(this.product.value);
     }
+    
   }
   getCategory(){
     this.productService.getSuperCategory().subscribe( res=>{
@@ -86,18 +89,6 @@ export class AddProductsComponent implements OnInit {
     if(this.product.get('barcode')?.value==null){
     this.product.get('barcode')?.setValue(this.p_id);}
   }
-
-  onFileUpload(event:any){
-    this.selecetdFile = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-    this.imagePreview = reader.result;
-    };
-    reader.readAsDataURL(this.selecetdFile);
-    }
-    OnUploadFile() {
-    this.http.post('../assets', this.selecetdFile)
-    }
     setCost(){
       let prate=this.product.get('purchase_Rate')?.value;
       let tax= ((this.product.get('gst')?.value) /100 ) * prate;
@@ -106,7 +97,19 @@ export class AddProductsComponent implements OnInit {
         //this.product.controls['retail_Rate'].setErrors({ 'incorrect': true});}
         //else{this.product.controls['retail_Rate'].setErrors({ 'incorrect': false});}
     }
-    chekprice(){
+    SetImage(){
+      const ImageSet: FormData = new FormData();
+      this.KeyImg=(<HTMLInputElement>document.getElementById("keyimg")).files;
+      this.image1=(<HTMLInputElement>document.getElementById("image1")).files
+      this.image2=(<HTMLInputElement>document.getElementById("image2")).files
+      this.image3=(<HTMLInputElement>document.getElementById("image3")).files
+      this.image4=(<HTMLInputElement>document.getElementById("image4")).files
+      ImageSet.append('KeyImg', this.KeyImg)
+      ImageSet.append('image1', this.image1)
+      ImageSet.append('image2', this.image2)
+      ImageSet.append('image3', this.image3)
+      ImageSet.append('image4', this.image4)
+      return ImageSet;
     }
     Submit(){
       if(this.EditProduct){
@@ -119,7 +122,7 @@ export class AddProductsComponent implements OnInit {
     this.pid();
     //this.product.get('productID')?.setValue(this.p_id);
     console.log(this.product.value)
-    this.productService.saveProduct(this.product.value).subscribe(res=>{
+    this.productService.saveProduct(this.product.value,this.SetImage()).subscribe(res=>{
       console.log(res)
     });
   }
