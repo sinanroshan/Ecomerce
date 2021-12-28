@@ -46,4 +46,9 @@ export interface SubCategory{
     superCategory:string,
     category:string
 }
+export interface Image{
+    FileName:string;
+    file:any;
+    Type:string;
+}
 

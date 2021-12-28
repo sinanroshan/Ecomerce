@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Observable, ObservedValueOf } from 'rxjs';
-import { Godown,  Products, SubCategory } from '../DataClass/data';
+import { Godown, Products, SubCategory } from '../DataClass/data';
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +29,20 @@ export class ProductApiService {
   getSugessionList(key:string){
     return this.http.get(this.productApi+'console/keyword/'+key)
   }
+  saveImg(file:any,filename:string,Type:string){
+    let params =new HttpParams()
+    .append('type',Type)
+    .append('name',filename)
+    const headers = {'Content-Type': 'multipart/form-data'}
+
+    return this.http.post(this.productApi+'console/SaveImage/',{},{
+      headers: headers,
+      params: params,
+    })
+  }
   saveProduct(Product:any,ImageSet:any):Observable<any>{
     console.log(Product);
-    return this.http.post(this.productApi+'console/AddProduct',{ImageSet,Product},{responseType: 'text'});
+    return this.http.post(this.productApi+'console/AddProduct',{Product},{responseType: 'text'});
   }
   UpdateProduct(Product:any, key:any):Observable<any>{
     return this.http.post(this.productApi+'console/EditProduct/'+key+'/',Product,{responseType: 'text'});

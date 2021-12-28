@@ -20,6 +20,9 @@ export class AddProductsComponent implements OnInit {
   image2:any;
   image3:any;
   image4:any;
+  FileName:any;
+  file:any;
+  Type:any;
   imagePreview: any;
   ListGodown:Godown[]=[];
   ListSubCatgory:SubCategory[]=[];
@@ -98,18 +101,13 @@ export class AddProductsComponent implements OnInit {
         //else{this.product.controls['retail_Rate'].setErrors({ 'incorrect': false});}
     }
     SetImage(){
-      const ImageSet: FormData = new FormData();
-      this.KeyImg=(<HTMLInputElement>document.getElementById("keyimg")).files;
-      this.image1=(<HTMLInputElement>document.getElementById("image1")).files
-      this.image2=(<HTMLInputElement>document.getElementById("image2")).files
-      this.image3=(<HTMLInputElement>document.getElementById("image3")).files
-      this.image4=(<HTMLInputElement>document.getElementById("image4")).files
-      ImageSet.append('KeyImg', this.KeyImg)
-      ImageSet.append('image1', this.image1)
-      ImageSet.append('image2', this.image2)
-      ImageSet.append('image3', this.image3)
-      ImageSet.append('image4', this.image4)
-      return ImageSet;
+      if(this.p_id==""){this.FileName=this.product.get('productID')?.value;}
+      else{this.FileName=this.p_id}
+      this.file=(<HTMLInputElement>document.getElementById("keyimg")).files;
+      this.Type="KeyImg";
+      this.productService.saveImg(this.file,this.FileName,this.Type).subscribe(res=>{
+        console.log(res)
+      });
     }
     Submit(){
       if(this.EditProduct){
@@ -120,7 +118,6 @@ export class AddProductsComponent implements OnInit {
     }
   save(){
     this.pid();
-    //this.product.get('productID')?.setValue(this.p_id);
     console.log(this.product.value)
     this.productService.saveProduct(this.product.value,this.SetImage()).subscribe(res=>{
       console.log(res)
