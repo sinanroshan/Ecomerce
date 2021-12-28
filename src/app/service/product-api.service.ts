@@ -30,14 +30,17 @@ export class ProductApiService {
     return this.http.get(this.productApi+'console/keyword/'+key)
   }
   saveImg(file:any,filename:string,Type:string){
-    let params =new HttpParams()
-    .append('type',Type)
-    .append('name',filename)
-    const headers = {'Content-Type': 'multipart/form-data'}
+    let formdata = new FormData();
+    formdata.append('file',file)
 
-    return this.http.post(this.productApi+'console/SaveImage/',{},{
-      headers: headers,
+    let params =new HttpParams()
+    .set('type',Type)
+    .set('name',filename)
+    const headers = {'Content-Type': 'multipart/form-data'}
+      console.log(file)
+    return this.http.post(this.productApi+'console/SaveImage/',file,{
       params: params,
+      responseType: 'text'
     })
   }
   saveProduct(Product:any,ImageSet:any):Observable<any>{
