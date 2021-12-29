@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
 import { Godown, Products, SubCategory } from '../DataClass/data';
@@ -29,21 +29,26 @@ export class ProductApiService {
   getSugessionList(key:string){
     return this.http.get(this.productApi+'console/keyword/'+key)
   }
-  saveImg(file:any,filename:string,Type:string){
-    let formdata = new FormData();
-    formdata.append('file',file)
 
-    let params =new HttpParams()
-    .set('type',Type)
-    .set('name',filename)
-    const headers = {'Content-Type': 'multipart/form-data'}
-      console.log(file)
-    return this.http.post(this.productApi+'console/SaveImage/',file,{
-      params: params,
-      responseType: 'text'
-    })
+
+  saveImg(File:File,filename:string,Type:string):Observable<any>{
+    let formdata = new FormData();
+    formdata.append("imageFile",File,File.name)
+    formdata.append('type',Type)
+    formdata.append('name',filename)
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data; charset=utf-8');
+    headers.set('Accept', 'application/json');
+    console.log(formdata)
+    return this.http.post(this.productApi+'console/SaveImage/',formdata,{ headers : headers,
+      reportProgress: true,
+      responseType: 'text'})
   }
-  saveProduct(Product:any,ImageSet:any):Observable<any>{
+
+
+
+  saveProduct(Product:any):Observable<any>{
     console.log(Product);
     return this.http.post(this.productApi+'console/AddProduct',{Product},{responseType: 'text'});
   }

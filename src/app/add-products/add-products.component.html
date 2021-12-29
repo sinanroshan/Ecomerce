@@ -115,10 +115,10 @@
             [class.is-invalid]="product.get('current_Stock')?.touched && product.get('current_Stock')?.invalid">
         </span>
     </div>
-    <input id="keyimg" type="file" (change)="SetImage()">
-    <input id="image1" type="file">
-    <input id="image2" type="file">
-    <input id="image3" type="file">
-    <input id="image4" type="file">
+    <input id="keyimg" type="file" (change)="SetImage($event)">
+    <input id="img1" type="file" (change)="SetImage($event)">
+    <input id="img2" type="file" (change)="SetImage($event)">
+    <input id="img3" type="file" (change)="SetImage($event)">
+    <input id="img4" type="file" (change)="SetImage($event)">
 </div>
         <button id="btn_save" (click)=Submit()>Submt</button>

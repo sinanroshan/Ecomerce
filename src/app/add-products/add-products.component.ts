@@ -15,11 +15,11 @@ export class AddProductsComponent implements OnInit {
   url:any;
   EditProduct:boolean=false;
   updatekey:any;
-  KeyImg : any;
-  image1:any;
-  image2:any;
-  image3:any;
-  image4:any;
+  KeyImg:string='';
+  image1:string='';
+  image2:string='';
+  image3:string='';
+  image4:string='';
   FileName:any;
   file:any;
   Type:any;
@@ -100,13 +100,25 @@ export class AddProductsComponent implements OnInit {
         //this.product.controls['retail_Rate'].setErrors({ 'incorrect': true});}
         //else{this.product.controls['retail_Rate'].setErrors({ 'incorrect': false});}
     }
-    SetImage(){
+    SetImage(event:any){
       if(this.p_id==""){this.FileName=this.product.get('productID')?.value;}
       else{this.FileName=this.p_id}
-      this.file=(<HTMLInputElement>document.getElementById("keyimg")).files;
-      this.Type="KeyImg";
+      this.file = event.target.files[0];
+      this.Type=(event.target.id);
       this.productService.saveImg(this.file,this.FileName,this.Type).subscribe(res=>{
         console.log(res)
+        switch(this.Type){
+          case "keyimg":{this.KeyImg=res}
+            break;
+          case "img1":{this.image1=res}
+            break;
+          case "img2":{this.image2=res}
+            break;
+          case "img3":{this.image3=res}
+            break;
+          case "img4":{this.image4=res}
+            break;
+        }
       });
     }
     Submit(){
@@ -119,7 +131,7 @@ export class AddProductsComponent implements OnInit {
   save(){
     this.pid();
     console.log(this.product.value)
-    this.productService.saveProduct(this.product.value,this.SetImage()).subscribe(res=>{
+    this.productService.saveProduct(this.product.value).subscribe(res=>{
       console.log(res)
     });
   }
