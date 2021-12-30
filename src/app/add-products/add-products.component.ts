@@ -15,15 +15,11 @@ export class AddProductsComponent implements OnInit {
   url:any;
   EditProduct:boolean=false;
   updatekey:any;
-  KeyImg:string='';
-  image1:string='';
-  image2:string='';
-  image3:string='';
-  image4:string='';
+
   FileName:any;
   file:any;
   Type:any;
-  imagePreview: any;
+
   ListGodown:Godown[]=[];
   ListSubCatgory:SubCategory[]=[];
   p_id="";
@@ -48,6 +44,11 @@ export class AddProductsComponent implements OnInit {
     retail_Rate: new FormControl(null,[Validators.required]),
     whole_Rate: new FormControl('',Validators.required),
     mrp: new FormControl('',Validators.required),
+    keyImage: new FormControl(''),
+    image1: new FormControl(''),
+    image2: new FormControl(''),
+    image3: new FormControl(''),
+    image4: new FormControl('')
 }); 
   constructor(private productService : ProductApiService,private fb:FormBuilder,
                 private http: HttpClient,private router:Router,private route: ActivatedRoute ) { }
@@ -89,7 +90,7 @@ export class AddProductsComponent implements OnInit {
       this.p_id=res;
     });
     this.product.get('productID')?.setValue(this.p_id);
-    if(this.product.get('barcode')?.value==null){
+    if(this.product.get('barcode')?.value==''){
     this.product.get('barcode')?.setValue(this.p_id);}
   }
     setCost(){
@@ -106,17 +107,16 @@ export class AddProductsComponent implements OnInit {
       this.file = event.target.files[0];
       this.Type=(event.target.id);
       this.productService.saveImg(this.file,this.FileName,this.Type).subscribe(res=>{
-        console.log(res)
         switch(this.Type){
-          case "keyimg":{this.KeyImg=res}
+          case "keyimg":{this.product.get('keyImage')?.setValue(res)}
             break;
-          case "img1":{this.image1=res}
+          case "img1":{this.product.get('image1')?.setValue(res)}
             break;
-          case "img2":{this.image2=res}
+          case "img2":{this.product.get('image2')?.setValue(res)}
             break;
-          case "img3":{this.image3=res}
+          case "img3":{this.product.get('image3')?.setValue(res)}
             break;
-          case "img4":{this.image4=res}
+          case "img4":{this.product.get('image4')?.setValue(res)}
             break;
         }
       });
@@ -130,7 +130,7 @@ export class AddProductsComponent implements OnInit {
     }
   save(){
     this.pid();
-    console.log(this.product.value)
+    this.product.get('')
     this.productService.saveProduct(this.product.value).subscribe(res=>{
       console.log(res)
     });
