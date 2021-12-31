@@ -1,7 +1,5 @@
-table{
-    max-height: 84%;
-    min-width: 99%;
-    overflow: scroll;
+ table{
+    border: .2px solid rgb(87, 87, 87);
  }
  #loading {
     position: absolute;
@@ -20,7 +18,11 @@ table{
    font-weight: 300;
  }
  td {
-    border: 1px solid #000;
+    border-left: .1px solid rgb(124, 124, 124);
+}
+.orderNO{
+    min-width: 8em;
+    max-width: 8em;
 }
 
 tr td:last-child {

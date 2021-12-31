@@ -11,6 +11,8 @@ export class OrdersComponent implements OnInit {
 oreders:OrderData[]=[];
 ordersBackUp:OrderData[]=[]
 loading: boolean = true;
+FromDate:any
+ToDate:any
 
 config = {
   itemsPerPage: 50,
@@ -35,6 +37,20 @@ public labels: any = {
      this.oreders=res
      console.log(this.oreders)
    })
+  }
+  filter(){
+    this.oreders=this.ordersBackUp;
+    this.FromDate= (<HTMLInputElement>document.getElementById('fromDate')).value;
+    this.ToDate= (<HTMLInputElement>document.getElementById('toDate')).value;
+    console.log(this.FromDate+" ---- "+this.ToDate)
+    //if(this.FromDate==""){
+    //  this.oreders=this.ordersBackUp;
+   // }
+    //else{
+          //this.oreders=this.ordersBackUp;
+          this.oreders=this.oreders.filter(res => res.orderDate >=this.FromDate && res.orderDate<= this.ToDate )
+       // }
+       console.log(this.oreders)
   }
 
   onPageChange(event:any){

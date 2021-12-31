@@ -1,4 +1,4 @@
- #loading {
+  #loading {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -11,9 +11,15 @@
     background-color: rgba(255, 255, 255, 0);
     z-index: 99;
   } 
+  table{
+    border: .2px solid rgb(87, 87, 87);
+  }
  th{
    font-weight: 300;
  }
+ td {
+  border-left: .1px solid rgb(124, 124, 124);
+  }
 .table-striped>tbody>tr:nth-child(odd)>td{
    background-color: #e2ecff;
  }

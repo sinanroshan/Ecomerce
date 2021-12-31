@@ -3,14 +3,17 @@
   <div><label>Search Products: </label>
       <input type="text" id="searchKey" (keyup.enter)="search()">
       <button (click)="search()">Search</button>
-
   </div>
 -->
+<div>
+    <input id="fromDate" type="date" (change)="filter()">
+    <input id="toDate" type="date" (change)="filter()">
+</div>
 <div class="productList" >
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover" style="width: 99%; margin: auto;">
     <thead class="table-dark">
         <tr class="head">
-        <th>Order No</th >
+        <th class="orderNO">Order No</th >
         <th>Coustome ID</th>
         <th>Order Amount</th>
         <th>Item Qty</th>
@@ -23,15 +26,15 @@
 </thead>
 <tbody>
     <tr *ngFor="let i of oreders |  paginate: config">
-        <td class="container">{{i.invno}}</td>
-        <td class="container">{{i.customerID}}</td>
-        <td class="container">{{i.totalAmound}}/-</td>
-        <td class="container">{{i.orderQty}}</td>
-        <td class="container">{{i.orderDate}}</td>
-        <td class="container">{{i.c_FullName}}</td>
-        <td class="container">{{i.c_phone}}</td>
-        <td class="container">{{i.c_place}}, {{i.c_home}}, {{i.c_landmark}}, {{i.c_City}}, {{i.c_pin}}</td>
-        <td class="container">{{i.orderStatus}}</td>
+        <td >{{i.invno}}</td>
+        <td >{{i.customerID}}</td>
+        <td >{{i.totalAmound}}/-</td>
+        <td >{{i.orderQty}}</td>
+        <td >{{i.orderDate}}</td>
+        <td >{{i.c_FullName}}</td>
+        <td >{{i.c_phone}}</td>
+        <td >{{i.c_place}}, {{i.c_home}}, {{i.c_landmark}}, {{i.c_City}}, {{i.c_pin}}</td>
+        <td >{{i.orderStatus}}</td>
     </tr>
 </tbody>  
 <!--
