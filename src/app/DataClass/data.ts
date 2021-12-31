@@ -60,3 +60,18 @@ export interface Image{
     Type:string;
 }
 
+export interface OrderData{
+    invno:number
+    customerID:number
+    totalAmound:number
+    orderQty:number
+    orderDate:Date
+    c_FullName:string
+    c_phone:string
+    c_place:string
+    c_home:string
+    c_pin:number
+    c_landmark:string
+    c_City:string
+    orderStatus:string
+}

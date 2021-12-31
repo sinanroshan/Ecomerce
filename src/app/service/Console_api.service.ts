@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
-import { Godown, Products, SubCategory } from '../DataClass/data';
+import { Godown, OrderData, Products, SubCategory } from '../DataClass/data';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,6 @@ export class ProductApiService {
     return this.http.get(this.productApi+'console/keyword/'+key)
   }
 
-
   saveImg(File:File,filename:string,Type:string):Observable<any>{
     let formdata = new FormData();
     formdata.append("imageFile",File,File.name)
@@ -45,14 +44,14 @@ export class ProductApiService {
       reportProgress: true,
       responseType: 'text'})
   }
-
-
-
   saveProduct(Product:Products):Observable<any>{
     console.log(Product);
     return this.http.post(this.productApi+'console/AddProduct',Product,{responseType: 'text'});
   }
   UpdateProduct(Product:any, key:any):Observable<any>{
     return this.http.post(this.productApi+'console/EditProduct/'+key+'/',Product,{responseType: 'text'});
+  }
+  getOrders(){
+    return this.http.get<OrderData[]>(this.productApi+'console/orders')
   }
 }

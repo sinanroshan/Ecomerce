@@ -7,7 +7,7 @@
   </div>
 -->
 <div class="productList" >
-<table class="table  table-striped table-hover" style="width: 100%;">
+<table class="table table-striped table-hover">
     <thead class="table-dark">
         <tr class="head">
         <th>Order No</th >
@@ -22,16 +22,16 @@
         </tr>
 </thead>
 <tbody>
-    <tr>
-        <td class="container">1001</td>
-        <td class="container">c_id: 123456789</td>
-        <td class="container">Amound :150/-</td>
-        <td class="container">qty: 5</td>
-        <td class="container">Date : 30-12-2021</td>
-        <td class="container">FUll Name</td>
-        <td class="container">ph: 9874563210</td>
-        <td class="container">FUll address pin</td>
-        <td class="container">Ordr Status</td>
+    <tr *ngFor="let i of oreders |  paginate: config">
+        <td class="container">{{i.invno}}</td>
+        <td class="container">{{i.customerID}}</td>
+        <td class="container">{{i.totalAmound}}/-</td>
+        <td class="container">{{i.orderQty}}</td>
+        <td class="container">{{i.orderDate}}</td>
+        <td class="container">{{i.c_FullName}}</td>
+        <td class="container">{{i.c_phone}}</td>
+        <td class="container">{{i.c_place}}, {{i.c_home}}, {{i.c_landmark}}, {{i.c_City}}, {{i.c_pin}}</td>
+        <td class="container">{{i.orderStatus}}</td>
     </tr>
 </tbody>  
 <!--
