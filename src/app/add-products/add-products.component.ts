@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Godown, SubCategory } from '../DataClass/data';
-import { ProductApiService } from '../service/product-api.service';
+import { ProductApiService } from '../service/Console_api.service';
 
 @Component({
   selector: 'app-add-products',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Editprod, Products } from 'src/app/DataClass/data';
-import { ProductApiService } from 'src/app/service/product-api.service';
+import { ProductApiService } from 'src/app/service/Console_api.service';
 
 @Component({
   selector: 'app-view-products',

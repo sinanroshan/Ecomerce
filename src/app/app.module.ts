@@ -16,6 +16,7 @@ import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { TopbarComponent } from './topbar/topbar.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TopbarComponent } from './topbar/topbar.component';
     ViewProductsComponent,
     AddProductsComponent,
     TopbarComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
