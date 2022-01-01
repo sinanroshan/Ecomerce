@@ -18,6 +18,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TopbarComponent } from './topbar/topbar.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CompanyComponent } from './company/company.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AddProductsComponent,
     TopbarComponent,
     OrdersComponent,
+    CompanyComponent,
   ],
   imports: [
     BrowserModule,

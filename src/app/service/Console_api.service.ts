@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
-import { Godown, Invoice, OrderData, Products, SubCategory } from '../DataClass/data';
+import { Company, Godown, Invoice, OrderData, Products, SubCategory } from '../DataClass/data';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,9 @@ export class ProductApiService {
   private productApi="http://"+this.ip+":9090/";
 
   constructor(private http: HttpClient) { }
-
+  company(){
+    return this.http.get<Company[]>(this.productApi+'/api/company')
+  }
   getProductList(){
    return this.http.get<Products[]>(this.productApi+'console/Allproducts');
   }

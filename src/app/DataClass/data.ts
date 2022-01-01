@@ -87,3 +87,21 @@ export interface Invoice{
     tprice:number
     status:string
 }
+export interface Company{
+phone:number
+email:string
+website:string
+gstNo:string
+state:string
+country:string
+bank:string
+bankBranch:string
+bankIfce:string
+bankAccNO:string
+name:string
+address1:string
+city:string
+addres2:string
+pin:number
+logo:string
+}

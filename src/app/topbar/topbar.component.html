@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Home</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngFor="let cmp of company">
+  <a class="navbar-brand" href="#">{{cmp.name}}</a>
 
     <ul class="navbar-nav fixxed-top mr-auto">
       <li class="nav-item active">
@@ -15,4 +15,11 @@
         
       </li>
     </ul>
+    <div class="dropdown" style="float: right;">
+      <img class="logo" src="{{cmp.logo}}">
+      <div class="list">
+        <div [routerLink]="['/routePath']" routerLinkActive="router-link-active" >Setings</div>
+        <div>logout</div>
+      </div>
+    </div>
 </nav>
