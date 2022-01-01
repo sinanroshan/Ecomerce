@@ -36,10 +36,12 @@ public labels: any = {
    this.productApi.getOrders().subscribe(res=>{
      this.oreders=res
      console.log(this.oreders)
+     this.ordersBackUp=this.oreders
    })
   }
   filter(){
     this.oreders=this.ordersBackUp;
+    console.log(this.oreders)
     this.FromDate= (<HTMLInputElement>document.getElementById('fromDate')).value;
     this.ToDate= (<HTMLInputElement>document.getElementById('toDate')).value;
     console.log(this.FromDate+" ---- "+this.ToDate)
@@ -48,11 +50,13 @@ public labels: any = {
    // }
     //else{
           //this.oreders=this.ordersBackUp;
-          this.oreders=this.oreders.filter(res => res.orderDate >=this.FromDate && res.orderDate<= this.ToDate )
+          this.oreders=this.oreders.filter(res => res.orderDate >= this.FromDate && res.orderDate<= this.ToDate )
        // }
        console.log(this.oreders)
   }
-
+  showOrder(order:OrderData){
+    console.log(order)
+  }
   onPageChange(event:any){
     this.config.currentPage = event;
   }

@@ -22,6 +22,7 @@
         <th>Phone</th>
         <th>Address</th>
         <th>Order Status </th>
+        <th></th>
         </tr>
 </thead>
 <tbody>
@@ -35,6 +36,7 @@
         <td >{{i.c_phone}}</td>
         <td >{{i.c_place}}, {{i.c_home}}, {{i.c_landmark}}, {{i.c_City}}, {{i.c_pin}}</td>
         <td >{{i.orderStatus}}</td>
+        <td><button (click)=showOrder(i) >Show Details</button></td>
     </tr>
 </tbody>  
 <!--
