@@ -6,8 +6,10 @@
   </div>
 -->
 <div>
-    <input id="fromDate" type="date" (change)="filter()">
-    <input id="toDate" type="date" (change)="filter()">
+  <label>From</label>
+    <input id="fromDate" type="date" (change)="filter($event)"> &nbsp;
+  <label>To</label>
+    <input id="toDate" type="date" (change)="filter($event)">
 </div>
 <div class="productList" >
 <table class="table table-striped table-hover" style="width: 99%; margin: auto;">
@@ -26,7 +28,7 @@
         </tr>
 </thead>
 <tbody>
-    <tr *ngFor="let i of oreders |  paginate: config">
+    <tr *ngFor="let i of oreders | paginate: config">
         <td >{{i.invno}}</td>
         <td >{{i.customerID}}</td>
         <td >{{i.totalAmound}}/-</td>
@@ -36,7 +38,7 @@
         <td >{{i.c_phone}}</td>
         <td >{{i.c_place}}, {{i.c_home}}, {{i.c_landmark}}, {{i.c_City}}, {{i.c_pin}}</td>
         <td >{{i.orderStatus}}</td>
-        <td><button (click)=showOrder(i) >Show Details</button></td>
+        <td><button (click)=showOrder(orderDetails,i) >Show Details</button></td>
     </tr>
 </tbody>  
 <!--
@@ -66,3 +68,41 @@
 </tfoot> -->
 </table>
 </div>
+<ng-template #orderDetails >
+  <div class="modal-body">
+      <div class="action_cancel" (click)="closemodel(orderDetails)">&times;</div><br>
+      <div class="popup_head">Order Details</div>
+
+      <div>
+        <table class="table table-striped table-hover" style="width: 99%; margin: auto;">
+          <thead class="table-dark">
+              <tr class="head">
+              <th>invno</th>
+              <th>Product Id</th>
+              <th>Product Name</th>
+              <th>Qty</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Mrp</th>
+              <th>Total</th >
+              <th>Order Status </th>
+              </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let inv of invoice | paginate: config">
+              <td >{{inv.invno}}</td>
+              <td >{{inv.pId}}</td>
+              <td >{{inv.pName}}</td>
+              <td >{{inv.qty}}</td>
+              <td >{{inv.category}}</td>
+              <td >{{inv.price}}</td>
+              <td >{{inv.mrp}}</td>
+              <td >{{inv.tprice}}</td>
+              <td >{{inv.status}}</td>
+          </tr>
+      </tbody>  
+
+        </table>
+      </div>
+  </div>
+</ng-template>

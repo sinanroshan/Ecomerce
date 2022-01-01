@@ -64,7 +64,10 @@ export class AddProductsComponent implements OnInit {
       this.updatekey=this.product.get('name')?.value;
       console.log(this.product.value);
     }
-    
+  }
+  rest(){
+    this.product.reset();
+    this.router.navigate(['/products']);
   }
   getCategory(){
     this.productService.getSuperCategory().subscribe( res=>{
@@ -132,13 +135,16 @@ export class AddProductsComponent implements OnInit {
     this.pid();
     this.product.get('')
     this.productService.saveProduct(this.product.value).subscribe(res=>{
-      console.log(res)
+      if(res=='sved'){
+        this.rest()
+      }
     });
   }
   UpadteProduct(){
-    console.log(this.product.value)
     this.productService.UpdateProduct(this.product.value,this.updatekey).subscribe(res=>{
-      console.log(res)
+      if(res=='Updated'){
+        this.rest()
+      }
     });
   }
 

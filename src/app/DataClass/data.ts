@@ -75,3 +75,15 @@ export interface OrderData{
     c_City:string
     orderStatus:string
 }
+export interface Invoice{
+    si:Number
+    invno:number
+    pId:number
+    pName:string
+    qty:number
+    category:string
+    price:number
+    mrp:number
+    tprice:number
+    status:string
+}

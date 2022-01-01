@@ -39,3 +39,16 @@ tr td:last-child {
   position: fixed;
   top: 0px;
 }
+.popup_head{
+text-align: center;
+font-size: large;
+font-weight: 500;
+color: midnightblue;
+}
+.action_cancel{
+  float: right;
+  color: black;
+  font-size: 50px;
+  cursor: pointer;
+  font-weight: 100;
+}

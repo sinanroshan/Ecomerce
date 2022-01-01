@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderData } from '../DataClass/data';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Invoice, OrderData } from '../DataClass/data';
 import { ProductApiService } from '../service/Console_api.service';
 
 @Component({
@@ -10,9 +11,12 @@ import { ProductApiService } from '../service/Console_api.service';
 export class OrdersComponent implements OnInit {
 oreders:OrderData[]=[];
 ordersBackUp:OrderData[]=[]
+selectedOrder:OrderData
+invoice:Invoice[]=[]
 loading: boolean = true;
 FromDate:any
-ToDate:any
+ToDate :any
+
 
 config = {
   itemsPerPage: 50,
@@ -30,32 +34,34 @@ public labels: any = {
     screenReaderPageLabel: 'page',
     screenReaderCurrentLabel: `You're on page`
 };
-  constructor(private productApi : ProductApiService) { }
+  constructor(private productApi : ProductApiService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
    this.productApi.getOrders().subscribe(res=>{
      this.oreders=res
-     console.log(this.oreders)
      this.ordersBackUp=this.oreders
    })
   }
-  filter(){
+
+  filter(event:any){
     this.oreders=this.ordersBackUp;
-    console.log(this.oreders)
-    this.FromDate= (<HTMLInputElement>document.getElementById('fromDate')).value;
-    this.ToDate= (<HTMLInputElement>document.getElementById('toDate')).value;
-    console.log(this.FromDate+" ---- "+this.ToDate)
-    //if(this.FromDate==""){
-    //  this.oreders=this.ordersBackUp;
-   // }
-    //else{
-          //this.oreders=this.ordersBackUp;
-          this.oreders=this.oreders.filter(res => res.orderDate >= this.FromDate && res.orderDate<= this.ToDate )
-       // }
-       console.log(this.oreders)
+    if(event.target.id=='fromDate'){
+      this.FromDate=(<HTMLInputElement>document.getElementById('fromDate')).value;
+    }else{
+    this.ToDate=  (<HTMLInputElement>document.getElementById('toDate')).value}
+      this.oreders=this.oreders.filter(res => res.orderDate >= this.FromDate && res.orderDate<= this.ToDate )
   }
-  showOrder(order:OrderData){
-    console.log(order)
+
+  showOrder(orderDetails: any, inv:OrderData) {
+    this.selectedOrder=inv
+    this.productApi.getOrderDetails(this.selectedOrder.invno).subscribe(res=>{
+      this.invoice=res
+    })
+    this.modalService.open(orderDetails, { centered: true , size:'xl',backdrop: 'static'});
+  }
+  closemodel(orderDetails:any){
+    this.modalService.dismissAll(orderDetails)
   }
   onPageChange(event:any){
     this.config.currentPage = event;

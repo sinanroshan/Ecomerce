@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
-import { Godown, OrderData, Products, SubCategory } from '../DataClass/data';
+import { Godown, Invoice, OrderData, Products, SubCategory } from '../DataClass/data';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +45,6 @@ export class ProductApiService {
       responseType: 'text'})
   }
   saveProduct(Product:Products):Observable<any>{
-    console.log(Product);
     return this.http.post(this.productApi+'console/AddProduct',Product,{responseType: 'text'});
   }
   UpdateProduct(Product:any, key:any):Observable<any>{
@@ -53,5 +52,8 @@ export class ProductApiService {
   }
   getOrders(){
     return this.http.get<OrderData[]>(this.productApi+'console/orders')
+  }
+  getOrderDetails(invNO:any){
+    return this.http.get<Invoice[]>(this.productApi+'api/getinvoice/'+invNO)
   }
 }
