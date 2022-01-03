@@ -14,7 +14,7 @@ export class ProductApiService {
 
   constructor(private http: HttpClient) { }
   company(){
-    return this.http.get<Company[]>(this.productApi+'/api/company',{responseType:'json'})
+    return this.http.get<Company>(this.productApi+'/api/company',{responseType:'json'})
   }
   getProductList(){
    return this.http.get<Products[]>(this.productApi+'console/Allproducts');

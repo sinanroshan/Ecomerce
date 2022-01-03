@@ -8,7 +8,7 @@ import { ProductApiService } from '../service/Console_api.service';
   styleUrls: ['./topbar.component.css']
 })
 export class TopbarComponent implements OnInit {
-company:Company[]
+company:Company
 
   constructor(private productApi : ProductApiService) { }
 
@@ -16,7 +16,6 @@ company:Company[]
    this.productApi.company().subscribe(res=>{
      this.company=res
    })
-
   }
 
 }
