@@ -88,6 +88,7 @@ export interface Invoice{
     status:string
 }
 export interface Company{
+name:string
 phone:number
 email:string
 website:string
@@ -98,7 +99,6 @@ bank:string
 bankBranch:string
 bankIfce:string
 bankAccNO:string
-name:string
 address1:string
 city:string
 addres2:string

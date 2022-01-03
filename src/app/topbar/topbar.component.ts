@@ -15,7 +15,6 @@ company:Company[]
   ngOnInit(): void {
    this.productApi.company().subscribe(res=>{
      this.company=res
-     console.log(this.company)
    })
 
   }

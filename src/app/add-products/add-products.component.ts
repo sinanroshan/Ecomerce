@@ -51,7 +51,7 @@ export class AddProductsComponent implements OnInit {
     image4: new FormControl('')
 }); 
   constructor(private productService : ProductApiService,private fb:FormBuilder,
-                private http: HttpClient,private router:Router,private route: ActivatedRoute ) { }
+              private router:Router,private route: ActivatedRoute ) { }
   ngOnInit(): void {
     this.url = this.router.url;     
      this.getCategory();
