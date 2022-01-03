@@ -1,44 +1,45 @@
-<form style="width: 90%; margin: auto;" [formGroup]="company">
+<div class="formdata">
+<form  [formGroup]="company">
     <div class="form-group row">
-      <label for="name" class="col-sm-1 col-form-label">Name</label>
-      <div class="col-sm-5">
+      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
         <input type="text" readonly class="form-control" id="name" formControlName="name">
       </div>
     </div>
     <div class="form-group row">
-      <label for="Phone" class="col-sm-1 col-form-label">Phone</label>
-      <div class="col-sm-3">
+      <label for="Phone" class="col-sm-2 col-form-label">Phone</label>
+      <div class="col-sm-5">
         <input type="number" class="form-control" id="Phone" formControlName="phone">
       </div>
     </div>
     <div class="form-group row">
-        <label for="email" class="col-sm-1 col-form-label">email</label>
-        <div class="col-sm-5">
+        <label for="email" class="col-sm-2 col-form-label">email</label>
+        <div class="col-sm-10">
           <input type="email" class="form-control" id="email" formControlName="email">
         </div>
       </div>
       <div class="form-group row">
-        <label for="Address1" class="col-sm-1 col-form-label">Address1</label>
-        <div class="col-sm-5">
+        <label for="Address1" class="col-sm-2 col-form-label">Address1</label>
+        <div class="col-sm-10">
           <input type="text" class="form-control" id="Address1" formControlName="address1">
         </div>
       </div>
       <div class="form-group row">
-        <label for="addres2" class="col-sm-1 col-form-label">Addres2</label>
-        <div class="col-sm-5">
+        <label for="addres2" class="col-sm-2 col-form-label">Addres2</label>
+        <div class="col-sm-10">
             <textarea class="form-control" id="addres2" rows="3" formControlName="addres2"></textarea>
         </div>
       </div>
       <div class="form-group row">
-        <label for="city" class="col-sm-1 col-form-label">City</label>
-        <div class="col-sm-3">
+        <label for="city" class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-5">
           <input type="text" class="form-control" id="city"formControlName="city">
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="state" class="col-sm-1 col-form-label">State</label>
-        <div class="col-sm-3">
+        <label for="state" class="col-sm-2 col-form-label">State</label>
+        <div class="col-sm-5">
             <select id="state" class="form-control" formControlName="state">
                 <option selected>Choose...</option>
                 <option>...</option>
@@ -52,14 +53,14 @@
         </div>
       </div> -->
       <div class="form-group row">
-        <label for="gst" class="col-sm-1 col-form-label">Gst No.</label>
-        <div class="col-sm-3">
+        <label for="gst" class="col-sm-2 col-form-label">Gst No.</label>
+        <div class="col-sm-5">
           <input type="text" class="form-control" id="gst" formControlName="gstNo">
         </div>
       </div>
       <div class="form-group row">
-        <label for="website" class="col-sm-1 col-form-label">Web Site</label>
-        <div class="col-sm-3">
+        <label for="website" class="col-sm-2 col-form-label">Web Site</label>
+        <div class="col-sm-5">
           <input type="text" class="form-control" id="website" formControlName="website">
         </div>
       </div>
@@ -67,5 +68,9 @@
         <input type="file" class="custom-file-input" id="customFile">
         <label class="custom-file-label" for="customFile">Choose file</label>
       </div>
-      <button class="btn btn-primary" type="submit">Submit form</button>
+      <div class="row">
+      <button class="btn btn-primary" type="submit">Submit form</button></div>
   </form>
+  </div>
+  <div><button class="button_edit">edit</button></div>
+  

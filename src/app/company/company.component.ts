@@ -9,7 +9,8 @@ import { ProductApiService } from '../service/Console_api.service';
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit {
-companyData:Company;
+companyBackup:Company;
+edit:boolean=false
 
   company:FormGroup= this.fb.group({
     name:new FormControl(''),
@@ -34,13 +35,12 @@ companyData:Company;
 
   ngOnInit(): void {
     this.productService.company().subscribe(res=>{
-      this.companyData=res;
-       this.company.setValue(this.companyData)
-       
+      this.companyBackup=res;
+       this.company.setValue(res)
           })
 
   }
-  setData(){
+  EnableEdit(){
     //this.company.setValue(JSON.stringify(this.companyData))
   }
 

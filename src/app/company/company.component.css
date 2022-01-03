@@ -8,6 +8,11 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+.formdata{
+  margin-top: 20px;
+  width:60%;
+  margin-left: 10%;
+}
 .form-group{
     padding-top: 10px;
     padding-bottom: 10px;
@@ -16,6 +21,10 @@ button, .custom-file{
     margin-top: 15px;
     margin-bottom: 15px;
 }
-button{
-    margin-left: 500px;
+.btn{
+    float: right;
+    width: 40%;
+}
+.button_edit{
+  float: right;
 }
