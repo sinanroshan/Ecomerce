@@ -39,3 +39,9 @@ button, .custom-file{
   margin-top: 30px;
   float: left;
 }
+.dashed{
+  background-color:white;
+  margin-bottom: -1px;
+  border-top: 2px dashed rgb(0, 0, 0);
+}
+h3{text-align: center;}

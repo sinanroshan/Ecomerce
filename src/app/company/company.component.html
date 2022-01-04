@@ -4,76 +4,103 @@
     <div class="form-group row">
       <label for="name" class="col-sm-2 col-form-label">Name</label>
       <div class="col-sm-10">
-        <input type="text" readonly class="form-control" id="name" formControlName="name">
+        <input type="text" [readonly]="editMode" class="form-control" id="name" formControlName="name">
       </div>
     </div>
     <div class="form-group row">
       <label for="Phone" class="col-sm-2 col-form-label">Phone</label>
       <div class="col-sm-5">
-        <input type="number" class="form-control" id="Phone" formControlName="phone">
+        <input type="number" class="form-control" id="Phone" maxlength="10" formControlName="phone"  [readonly]="editMode">
       </div>
     </div>
     <div class="form-group row">
         <label for="email" class="col-sm-2 col-form-label">email</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="email" formControlName="email">
+          <input type="email" class="form-control" id="email" formControlName="email"  [readonly]="editMode">
         </div>
       </div>
       <div class="form-group row">
         <label for="Address1" class="col-sm-2 col-form-label">Address1</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="Address1" formControlName="address1">
+          <input type="text" class="form-control" id="Address1" formControlName="address1"  [readonly]="editMode">
         </div>
       </div>
       <div class="form-group row">
         <label for="addres2" class="col-sm-2 col-form-label">Addres2</label>
         <div class="col-sm-10">
-            <textarea class="form-control" id="addres2" rows="3" formControlName="addres2"></textarea>
+            <textarea class="form-control" id="addres2" rows="3" formControlName="addres2"  [readonly]="editMode"></textarea>
         </div>
       </div>
       <div class="form-group row">
         <label for="city" class="col-sm-2 col-form-label">City</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" id="city"formControlName="city">
+          <input type="text" class="form-control" id="city"formControlName="city"  [readonly]="editMode">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="state" class="col-sm-2 col-form-label">State</label>
         <div class="col-sm-5">
-            <select id="state" class="form-control" formControlName="state">
-                <option selected>Choose...</option>
-                <option>...</option>
-            </select>
+          <input type="text" class="form-control" id="state" formControlName="state" [readonly]="editMode">
         </div>
       </div>
      <!-- <div class="form-group row">
         <label for="zip" class="col-sm-1 col-form-label">ZipCode</label>
         <div class="col-sm-3">
-          <input type="number" class="form-control" id="zip" formControlName="pin">
+          <input type="number" class="form-control" id="zip" formControlName="pin" [readonly]="editMode">
         </div>
       </div> -->
       <div class="form-group row">
         <label for="gst" class="col-sm-2 col-form-label">Gst No.</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" id="gst" formControlName="gstNo">
+          <input type="text" class="form-control" id="gst" formControlName="gstNo" [readonly]="editMode">
         </div>
       </div>
       <div class="form-group row">
         <label for="website" class="col-sm-2 col-form-label">Web Site</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" id="website" formControlName="website">
+          <input type="text" class="form-control" id="website" formControlName="website"  [readonly]="editMode">
         </div>
       </div>
       <div class="custom-file">
-        <input type="file" class="custom-file-input" id="customFile">
         <label class="custom-file-label" for="customFile">Choose file</label>
+        <input type="file" class="custom-file-input" (change)="SetImage($event)" id="customFile" [disabled]="editMode">
       </div>
-      <button class="btn btn-primary" type="submit">Submit form</button>
+
+      <div>
+        <hr class="dashed">
+        <h3 class="text-uppercase">Bank Details</h3>
+      </div>
+      <div class="form-group row">
+        <label for="bank" class="col-sm-2 col-form-label">Bank</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="bank" formControlName="bank" [readonly]="editMode">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="bBranch" class="col-sm-2 col-form-label">Branch</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="bBranch" formControlName="bankBranch" [readonly]="editMode">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="bifce" class="col-sm-2 col-form-label">IFSC Code</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="bifce" formControlName="bankIfce" [readonly]="editMode">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="bAccno" class="col-sm-2 col-form-label">Acc. Number</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" id="bAccno" formControlName="bankAccNO" [readonly]="editMode">
+        </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit" (click)=submit() [disabled]="editMode">Submit form</button>
   </form>
   </div>
   </div>
   <div class="column right">
-    <button type="button" class="btn btn-warning">Edit</button>
+    <button type="button" class="btn btn-warning" (click)="EnableEdit()">Edit</button>
   </div>
   

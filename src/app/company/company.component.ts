@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Company } from '../DataClass/data';
 import { ProductApiService } from '../service/Console_api.service';
 
@@ -10,11 +11,11 @@ import { ProductApiService } from '../service/Console_api.service';
 })
 export class CompanyComponent implements OnInit {
 companyBackup:Company;
-edit:boolean=false
+editMode=true
 
   company:FormGroup= this.fb.group({
     name:new FormControl(''),
-    phone:new FormControl('',[Validators.required,Validators.minLength(10)]),
+    phone:new FormControl(''),
     email:new FormControl('',[Validators.required]),
     address1:new FormControl('',[Validators.required]),
     addres2:new FormControl('',[Validators.required]),
@@ -31,7 +32,8 @@ edit:boolean=false
     logo:new FormControl(''),
 }); 
 
-  constructor(private productService : ProductApiService,private fb:FormBuilder) { }
+  constructor(private productService : ProductApiService,
+                private fb:FormBuilder,private router:Router) { }
 
   ngOnInit(): void {
     this.productService.company().subscribe(res=>{
@@ -41,7 +43,23 @@ edit:boolean=false
 
   }
   EnableEdit(){
-    //this.company.setValue(JSON.stringify(this.companyData))
+   this.editMode= !this.editMode;
+   console.log(this.editMode)
+   if(this.editMode==true){this.company.setValue(this.companyBackup) }
   }
-
+  SetImage(event:any){
+    let file;
+    let FileName=this.company.get('name')?.value;
+    file = event.target.files[0];
+    this.productService.saveImg(file,FileName,"Logo").subscribe(res=>{
+        this.company.get('logo')?.setValue(res)
+    });
+  }
+  submit(){
+    this.productService.updateCompanyDetails(this.company.value).subscribe(res=>{
+      if(res=="Updated"){
+        window.location.reload();
+      }
+    })
+  }
 }

@@ -58,4 +58,7 @@ export class ProductApiService {
   getOrderDetails(invNO:any){
     return this.http.get<Invoice[]>(this.productApi+'api/getinvoice/'+invNO)
   }
+  updateCompanyDetails(company:any):Observable<any>{
+    return this.http.post(this.productApi+'api/editCompanyData',company,{responseType: 'text'});
+  }
 }
