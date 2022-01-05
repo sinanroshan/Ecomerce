@@ -1,3 +1,11 @@
+export interface LoginData{
+    error:Boolean,
+    success:Boolean,
+    empname:string,
+    emptype:string,
+    token:string
+}
+
 export interface Products{
 barcode: string,
 category: string,

@@ -18,4 +18,7 @@ company:Company
    })
   }
 
+  logout(){
+    sessionStorage.removeItem('token');
+  }
 }

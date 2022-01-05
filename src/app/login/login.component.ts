@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProductApiService } from '../service/Console_api.service';
 
 @Component({
   selector: 'app-login',
@@ -8,18 +10,29 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  username="";
-  password="";
-  constructor(private router:Router) { }
+  user:FormGroup= this.fb.group({
+    username:(''),
+    password:('')
+  })
+  key:string;
+  constructor(private router:Router,private fb:FormBuilder,
+                private productApi : ProductApiService) { }
 
   ngOnInit(): void {
   }
-login(){
-  this.username= (<HTMLInputElement>document.getElementById('username')).value;
-  this.password= (<HTMLInputElement>document.getElementById('password')).value;
-  if(this.username && this.password =="admin"){
-    this.router.navigate(['home'],{ replaceUrl: true });
+  login(){
+    let loginString=this.user.get('username')?.value+':'+this.user.get('password')?.value;
+    let encodedKey=btoa(loginString)
+    this.productApi.login(encodedKey).subscribe(res=>{
+      if(res=="error")
+      {
+        localStorage.removeItem('Token');
+      }else{
+        this.key=btoa(res);
+        sessionStorage.setItem('token', 'key');
+        this.router.navigate([''],{ replaceUrl: true })
+        }
+      })    
   }
   
-}
 }

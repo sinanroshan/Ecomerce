@@ -13,6 +13,10 @@ export class ProductApiService {
   private productApi="http://"+this.ip+":9090/";
 
   constructor(private http: HttpClient) { }
+  login(Key:any):Observable<any>{
+    return this.http.get(this.productApi+'/console/Auth/'+Key,{responseType:'text'})
+  }
+
   company(){
     return this.http.get<Company>(this.productApi+'/api/company',{responseType:'json'})
   }
