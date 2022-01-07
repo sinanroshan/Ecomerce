@@ -20,5 +20,6 @@ company:Company
 
   logout(){
     sessionStorage.removeItem('token');
+    window.location.reload()
   }
 }
