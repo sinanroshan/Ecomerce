@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Editprod, Products } from 'src/app/DataClass/data';
 import { ProductApiService } from 'src/app/service/Console_api.service';
 
@@ -16,6 +17,8 @@ export class ViewProductsComponent implements OnInit {
   product:Products[]=[];
   productBackup:Products[]=[];
   loading: boolean = true;
+
+  selectedProduct:Products;
 
   config = {
     itemsPerPage: 50,
@@ -34,7 +37,7 @@ export class ViewProductsComponent implements OnInit {
       screenReaderCurrentLabel: `You're on page`
   };
   constructor(private productApi : ProductApiService,
-    private router:Router) { }
+              private router:Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -70,5 +73,15 @@ export class ViewProductsComponent implements OnInit {
   }
   editProduct(editProduct:Editprod){
     this.router.navigate(['/product/inventory', {edit:btoa( JSON.stringify(editProduct))}]);
+  }
+  showLedger(productLedger: any, Prod:Products) {
+    this.selectedProduct=Prod
+    //this.productApi.getOrderDetails(this.selectedOrder.invno).subscribe(res=>{
+     // this.invoice=res
+   // })
+    this.modalService.open(productLedger, { centered: true , size:'xl',backdrop: 'static'});
+  }
+  closemodel(productLedger:any){
+    this.modalService.dismissAll(productLedger)
   }
 }
