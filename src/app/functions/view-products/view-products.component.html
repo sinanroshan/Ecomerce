@@ -78,8 +78,9 @@
 <ng-template #productLedger >
   <div class="modal-body">
       <div class="action_cancel" (click)="closemodel(productLedger)">&times;</div><br>
-      <div class="popup_head">Order Details</div>
-
+      <h2 class="popup_head">Stock Ledger</h2>
+      <div>Product :{{selectedProduct.name}}</div>
+      <div>Barcode :{{selectedProduct.barcode}}</div>
       <div>
         <table class="table table-striped table-hover" style="width: 99%; margin: auto;">
           <thead class="table-dark">

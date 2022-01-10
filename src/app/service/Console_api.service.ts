@@ -65,4 +65,7 @@ export class ProductApiService {
   updateCompanyDetails(company:any):Observable<any>{
     return this.http.post(this.productApi+'api/editCompanyData',company,{responseType: 'text'});
   }
+  getLedgerReport(pname:string){
+    this.http.get(this.productApi+'console/keyword/'+pname)
+  }
 }

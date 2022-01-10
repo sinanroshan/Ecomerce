@@ -75,3 +75,11 @@
   display: inline-block;
   font-weight: bold;
 }
+
+.popup_head{
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  font-weight: 500;
+  color: midnightblue;
+}
