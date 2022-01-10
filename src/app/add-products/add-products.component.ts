@@ -1,5 +1,6 @@
 import { UpperCasePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -37,8 +38,8 @@ export class AddProductsComponent implements OnInit {
     hsn_Code: new FormControl('0'),
     gst: new FormControl('',Validators.required),
     cess: new FormControl('0'),
-    opening_Stock: new FormControl('0',Validators.required),
-    current_Stock: new FormControl('0',Validators.required),
+    opening_Stock: new FormControl(Number,Validators.required),
+    current_Stock: new FormControl(Number,Validators.required),
     purchase_Rate: new FormControl('',Validators.required),
     cost: new FormControl('',Validators.required),
     retail_Rate: new FormControl(null,[Validators.required]),
@@ -125,6 +126,12 @@ export class AddProductsComponent implements OnInit {
       });
     }
     Submit(){
+      const openingStock:number=parseInt(this.product.get('opening_Stock')?.value);
+      const currentStock:number=parseInt(this.product.get('current_Stock')?.value);
+      const sum:number=openingStock+currentStock
+      console.log(sum)
+      this.product.get('current_Stock')?.setValue(sum)
+      this.product.get('opening_Stock')?.setValue(0)
       if(this.EditProduct){
         this.UpadteProduct();
       }else{
@@ -133,7 +140,7 @@ export class AddProductsComponent implements OnInit {
     }
   save(){
     this.pid();
-    this.product.get('')
+    //this.product.get('')
     this.productService.saveProduct(this.product.value).subscribe(res=>{
       if(res=='sved'){
         this.rest()

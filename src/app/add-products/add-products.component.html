@@ -105,14 +105,14 @@
     <div class="marker">Stock Details</div>
     <div class="container">
         <span class="left">
+            <label class="label">Current Stock:</label>
+            <input class="input_small form-control" readonly type="number" formControlName="current_Stock"
+            [class.is-invalid]="product.get('current_Stock')?.touched && product.get('current_Stock')?.invalid">
+        </span>
+        <span class="right">
             <label class="label">Opening Stock:</label>
                 <input class="input_small form-control" type="number" formControlName="opening_Stock"
                 [class.is-invalid]="product.get('opening_Stock')?.touched && product.get('opening_Stock')?.invalid">
-        </span>
-        <span class="right">
-            <label class="label">Current Stock:</label>
-            <input class="input_small form-control" type="number" formControlName="current_Stock"
-            [class.is-invalid]="product.get('current_Stock')?.touched && product.get('current_Stock')?.invalid">
         </span>
     </div>
     <input id="keyimg" type="file" (change)="SetImage($event)">
