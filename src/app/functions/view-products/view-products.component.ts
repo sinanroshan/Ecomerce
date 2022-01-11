@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Editprod, Products } from 'src/app/DataClass/data';
+import { Editprod, Ledger, Products } from 'src/app/DataClass/data';
 import { ProductApiService } from 'src/app/service/Console_api.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class ViewProductsComponent implements OnInit {
   name:any;
   page:number = 1;
 
+  ledger:Ledger[];
   product:Products[]=[];
   productBackup:Products[]=[];
   loading: boolean = true;
@@ -76,9 +77,10 @@ export class ViewProductsComponent implements OnInit {
   }
   showLedger(productLedger: any, Prod:Products) {
     this.selectedProduct=Prod
-    //this.productApi.getOrderDetails(this.selectedOrder.invno).subscribe(res=>{
-     // this.invoice=res
-   // })
+    this.productApi.getLedgerReport(this.selectedProduct.name).subscribe(res=>{
+      this.ledger=res
+      console.log(this.ledger[1])
+    })
     this.modalService.open(productLedger, { centered: true , size:'xl',backdrop: 'static'});
   }
   closemodel(productLedger:any){

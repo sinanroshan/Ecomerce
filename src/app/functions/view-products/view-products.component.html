@@ -86,27 +86,23 @@
           <thead class="table-dark">
               <tr class="head">
               <th>SI NO.</th>
+              <th>Order No.</th>
               <th>Date</th>
-              <th>Voucher</th>
-              <th>Party</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Mrp</th>
+              <th>Customer</th>
+              <th>Customer Id</th>
               <th>Total</th >
               <th>Order Status </th>
               </tr>
       </thead>
       <tbody>
-          <tr>
-              <td >inv.invno}}</td>
-              <td >inv.pId}}</td>
-              <td >inv.pName}}</td>
-              <td >inv.qty}}</td>
-              <td >inv.category}}</td>
-              <td >inv.price}}</td>
-              <td >inv.mrp}}</td>
-              <td >inv.tprice}}</td>
-              <td >inv.status}}</td>
+          <tr *ngFor= "let l of ledger; index as i">
+              <td >{{i+1}}</td>
+              <td >{{l.invNo}}</td>
+              <td >{{l.date}}</td>
+              <td >{{l.customer}}</td>
+              <td >{{l.c_id}}</td>
+              <td >{{l.amound}}</td>
+              <td > Delivered </td>
           </tr>
       </tbody>  
 

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf } from 'rxjs';
-import { Company, Godown, Invoice, OrderData, Products, SubCategory } from '../DataClass/data';
+import { Company, Godown, Invoice, Ledger, OrderData, Products, SubCategory } from '../DataClass/data';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +66,6 @@ export class ProductApiService {
     return this.http.post(this.productApi+'api/editCompanyData',company,{responseType: 'text'});
   }
   getLedgerReport(pname:string){
-    this.http.get(this.productApi+'console/keyword/'+pname)
+    return this.http.get<Ledger[]>(this.productApi+'console/Ledger/'+pname)
   }
 }

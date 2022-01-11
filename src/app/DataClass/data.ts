@@ -113,3 +113,11 @@ addres2:string
 pin:number
 logo:string
 }
+export interface Ledger{
+    invNo:number
+    date:Date
+    qty:number
+    customer:string
+    c_id:string
+    amound:number
+}
