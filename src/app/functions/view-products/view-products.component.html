@@ -16,7 +16,7 @@
         <th (click)="sort('name')">Name &nbsp;<i class="fa fa-sort"></i></th>
         <th>Product</th>
         <th>Category </th>
-        <th (click)="sort('sub_Category')">Sub Category &nbsp;<i class="fa fa-sort"></i></th>
+        <th (click)="sort('sub_Category')">Sub Category &nbsp;<span class="fa fa-sort"></span></th>
         <th (click)="sort('unit')">Unit &nbsp;<i class="fa fa-sort"></i></th>
         <th (click)="sort('current_Stock')">Stock &nbsp;<i class="fa fa-sort"></i></th>
         <th (click)="sort('cost')">cost &nbsp;<i class="fa fa-sort"></i></th>
@@ -90,6 +90,7 @@
               <th>Date</th>
               <th>Customer</th>
               <th>Customer Id</th>
+              <th>Quantity</th>
               <th>Total</th >
               <th>Order Status </th>
               </tr>
@@ -101,6 +102,7 @@
               <td >{{l.date}}</td>
               <td >{{l.customer}}</td>
               <td >{{l.c_id}}</td>
+              <td>{{l.qty}}</td>
               <td >{{l.amound}}</td>
               <td > Delivered </td>
           </tr>

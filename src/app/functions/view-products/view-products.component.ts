@@ -55,7 +55,7 @@ export class ViewProductsComponent implements OnInit {
   reverse:boolean=false;
   sort(key:string){
       this.key=key;
-      this.reverse= !this.reverse;
+      //this.reverse= !this.reverse;
   }
   search(){
     this.name= (<HTMLInputElement>document.getElementById('searchKey')).value;
@@ -79,7 +79,6 @@ export class ViewProductsComponent implements OnInit {
     this.selectedProduct=Prod
     this.productApi.getLedgerReport(this.selectedProduct.name).subscribe(res=>{
       this.ledger=res
-      console.log(this.ledger[1])
     })
     this.modalService.open(productLedger, { centered: true , size:'xl',backdrop: 'static'});
   }
