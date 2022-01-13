@@ -23,11 +23,12 @@ mrp: number,
 name: string,
 opening_Stock: number,
 productID: number,
-purchase_Rate: "19.0",
+purchase_Rate: number,
 retail_Rate: number,
 sub_Category: string,
 unit: string,
 whole_Rate:number,
+discription:string;
 }
 export interface Editprod{
     barcode: string,
@@ -46,12 +47,13 @@ export interface Editprod{
     name: string,
     opening_Stock: number,
     productID: number,
-    purchase_Rate: "19.0",
+    purchase_Rate: number,
     retail_Rate: number,
     sub_Category: string,
     unit: string,
     whole_Rate:number,
-    KayImage:string;
+    KayImage:string,
+    discription:string;
 }
 
 export interface Godown{

@@ -34,22 +34,23 @@ export class AddProductsComponent implements OnInit {
     category: new FormControl(null,Validators.required),
     sub_Category: new FormControl(null,Validators.required),
     unit: new FormControl('PIECE',Validators.required),
-    barcode: new FormControl(null,Validators.required),
+    barcode: new FormControl(null),
     hsn_Code: new FormControl('0'),
     gst: new FormControl('',Validators.required),
     cess: new FormControl('0'),
     opening_Stock: new FormControl(Number,Validators.required),
-    current_Stock: new FormControl(Number,Validators.required),
+    current_Stock: new FormControl(0,Validators.required),
     purchase_Rate: new FormControl('',Validators.required),
     cost: new FormControl('',Validators.required),
     retail_Rate: new FormControl(null,[Validators.required]),
     whole_Rate: new FormControl('',Validators.required),
     mrp: new FormControl('',Validators.required),
-    keyImage: new FormControl(''),
-    image1: new FormControl(''),
-    image2: new FormControl(''),
-    image3: new FormControl(''),
-    image4: new FormControl('')
+    discription:new FormControl('',Validators.required),
+    keyImage: new FormControl('',Validators.minLength(5)),
+    image1: new FormControl('',Validators.minLength(5)),
+    image2: new FormControl('',Validators.minLength(5)),
+    image3: new FormControl('',Validators.minLength(5)),
+    image4: new FormControl('',Validators.minLength(5))
 }); 
   constructor(private productService : ProductApiService,private fb:FormBuilder,
               private router:Router,private route: ActivatedRoute ) { }
@@ -126,17 +127,18 @@ export class AddProductsComponent implements OnInit {
       });
     }
     Submit(){
+      if(this.product.valid ){
+        console.log(true)
       const openingStock:number=parseInt(this.product.get('opening_Stock')?.value);
       const currentStock:number=parseInt(this.product.get('current_Stock')?.value);
       const sum:number=openingStock+currentStock
-      console.log(sum)
       this.product.get('current_Stock')?.setValue(sum)
       this.product.get('opening_Stock')?.setValue(0)
       if(this.EditProduct){
         this.UpadteProduct();
       }else{
         this.save();
-      }
+      }}
     }
   save(){
     this.pid();

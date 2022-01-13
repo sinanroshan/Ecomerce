@@ -61,8 +61,18 @@ form-select{
     font-weight: 500;
     font-size: 13px;
 }
-#btn_save{
- background-color: rgb(25, 92, 92);
- font-size: large;
- color: white;
+.btn_save{
+    margin-left: 10%;
+    justify-content: space-around;
+}
+#btn{
+ width: 25%;
+ margin-bottom: 20px;
+}
+.imageUpload{
+    width: 80%;
+    height: auto;
+}
+.upload{
+    padding: 10px;
 }
