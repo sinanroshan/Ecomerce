@@ -47,7 +47,9 @@ public labels: any = {
   filter(event:any){
     this.oreders=this.ordersBackUp;
     if(event.target.id=='fromDate'){
+      
       this.FromDate=(<HTMLInputElement>document.getElementById('fromDate')).value;
+      
     }else{
     this.ToDate=  (<HTMLInputElement>document.getElementById('toDate')).value}
       this.oreders=this.oreders.filter(res => res.orderDate >= this.FromDate && res.orderDate<= this.ToDate )
