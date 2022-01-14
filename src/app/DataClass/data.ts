@@ -121,5 +121,6 @@ export interface Ledger{
     qty:number
     customer:string
     c_id:string
-    amound:number
+    amound:number,
+    type:string
 }

@@ -4,7 +4,7 @@ import { NUMBER_TYPE } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Godown, SubCategory } from '../DataClass/data';
+import { Godown, Products, SubCategory } from '../DataClass/data';
 import { ProductApiService } from '../service/Console_api.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class AddProductsComponent implements OnInit {
   FileName:any;
   file:any;
   Type:any;
+  productBackup:Products;
 
   ListGodown:Godown[]=[];
   ListSubCatgory:SubCategory[]=[];
@@ -55,6 +56,7 @@ export class AddProductsComponent implements OnInit {
   constructor(private productService : ProductApiService,private fb:FormBuilder,
               private router:Router,private route: ActivatedRoute ) { }
   ngOnInit(): void {
+    this.productBackup=this.product.value;
     this.url = this.router.url;     
      this.getCategory();
     if(this.url== "/product/inventory"){
@@ -66,6 +68,7 @@ export class AddProductsComponent implements OnInit {
       this.updatekey=this.product.get('name')?.value;
       console.log(this.product.value);
     }
+    this.productBackup=this.product.value;
   }
   rest(){
     this.product.reset();
@@ -155,6 +158,9 @@ export class AddProductsComponent implements OnInit {
         this.rest()
       }
     });
+  }
+  reset(){
+      this.product.setValue(this.productBackup);
   }
 
 }
