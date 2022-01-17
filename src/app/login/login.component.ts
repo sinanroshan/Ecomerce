@@ -32,7 +32,10 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('token', 'key');
         this.router.navigate([''],{ replaceUrl: true })
         }
-      })    
+      },err=>{
+        console.log("failed")
+      });
+          
   }
   
 }
