@@ -18,12 +18,13 @@
         <th class="orderNO">Order No</th >
         <th>Coustome ID</th>
         <th>Order Amount</th>
-        <th>Item Qty</th>
+        <th>Qty</th>
         <th>Date</th>
         <th>Coustomer</th>
         <th>Phone</th>
         <th>Address</th>
         <th>Order Status </th>
+        <th></th>
         <th></th>
         </tr>
 </thead>
@@ -38,7 +39,8 @@
         <td >{{i.c_phone}}</td>
         <td >{{i.c_place}}, {{i.c_home}}, {{i.c_landmark}}, {{i.c_City}}, {{i.c_pin}}</td>
         <td >{{i.orderStatus}}</td>
-        <td><button (click)=showOrder(orderDetails,i) >Show Details</button></td>
+        <td><button (click)=showOrder(orderDetails,i)>Details</button></td>
+        <td><button (click)=placeOrder(plcOrder)>Place Order</button></td>
     </tr>
 </tbody>  
 </table>
@@ -80,4 +82,13 @@
         </table>
       </div>
   </div>
+</ng-template>
+
+<ng-template #plcOrder>
+  <div class="modal-body">
+      <div class="action_cancel" (click)="closemodel(plcOrder)">&times;</div><br>
+      <p>Do you want to cancel this...?</p>
+      <div class="p_name">cancelP_name}}</div>
+  </div>
+  <button class="action_ok" (click)="cnfrmPlaceOrder(plcOrder)">Place Order</button>
 </ng-template>

@@ -69,4 +69,11 @@ public labels: any = {
     this.config.currentPage = event;
   }
 
+
+  placeOrder(plcOrder:any){
+    this.modalService.open(plcOrder, { centered: true , size:'sm',backdrop: 'static'});
+  }
+  cnfrmPlaceOrder(plcOrder:any){
+    
+  }
 }
