@@ -68,4 +68,7 @@ export class ProductApiService {
   getLedgerReport(pname:string){
     return this.http.get<Ledger[]>(this.productApi+'console/Ledger/'+pname)
   }
+  changeStatus(invNo:number, status:string):Observable<any>{
+    return this.http.get(this.productApi+'/auth/OrderStatus/'+invNo+'/'+status);
+  }
 }

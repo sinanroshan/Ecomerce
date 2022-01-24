@@ -70,10 +70,13 @@ public labels: any = {
   }
 
 
-  placeOrder(plcOrder:any){
+  placeOrder(plcOrder:any,inv:OrderData){
+    this.selectedOrder=inv
     this.modalService.open(plcOrder, { centered: true , size:'sm',backdrop: 'static'});
   }
   cnfrmPlaceOrder(plcOrder:any){
-    
+    this.productApi.changeStatus(this.selectedOrder.invno,"Order Placed").subscribe(res=>{
+      window.location.reload();
+    })
   }
 }
