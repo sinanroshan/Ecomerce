@@ -68,6 +68,13 @@ public labels: any = {
   onPageChange(event:any){
     this.config.currentPage = event;
   }
+  key:string='id';
+  reverse:boolean=false;
+  sort(key:string){
+      this.key=key;
+      this.oreders=this.ordersBackUp
+      this.reverse= !this.reverse;
+  }
 
 
   placeOrder(plcOrder:any,inv:OrderData){

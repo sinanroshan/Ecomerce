@@ -19,17 +19,17 @@
         <th>Coustome ID</th>
         <th>Order Amount</th>
         <th>Qty</th>
-        <th>Date</th>
-        <th>Coustomer</th>
+        <th (click)="sort('orderDate')">Date</th>
+        <th (click)="sort('c_FullName')">Coustomer</th>
         <th>Phone</th>
         <th>Address</th>
-        <th>Order Status </th>
+        <th (click)="sort('orderStatus')">Order Status </th>
         <th></th>
-        <th></th>
+        <th (click)="sort('orderStatus')"></th>
         </tr>
 </thead>
 <tbody>
-    <tr *ngFor="let i of oreders | paginate: config">
+    <tr *ngFor="let i of oreders | orderBy: key: reverse">
         <td >{{i.invno}}</td>
         <td >{{i.customerID}}</td>
         <td >{{i.totalAmound}}/-</td>
