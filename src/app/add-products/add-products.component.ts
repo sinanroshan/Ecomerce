@@ -35,7 +35,7 @@ export class AddProductsComponent implements OnInit {
     category: new FormControl(null,Validators.required),
     sub_Category: new FormControl(null,Validators.required),
     unit: new FormControl('PIECE',Validators.required),
-    barcode: new FormControl(null),
+    barcode: new FormControl(Number),
     hsn_Code: new FormControl('0'),
     gst: new FormControl('',Validators.required),
     cess: new FormControl('0'),
@@ -47,11 +47,11 @@ export class AddProductsComponent implements OnInit {
     whole_Rate: new FormControl('',Validators.required),
     mrp: new FormControl('',Validators.required),
     discription:new FormControl('',Validators.required),
-    keyImage: new FormControl('',Validators.minLength(5)),
-    image1: new FormControl('',Validators.minLength(5)),
-    image2: new FormControl('',Validators.minLength(5)),
-    image3: new FormControl('',Validators.minLength(5)),
-    image4: new FormControl('',Validators.minLength(5))
+    keyImage: new FormControl('',Validators.required),
+    image1: new FormControl('',Validators.required),
+    image2: new FormControl('',Validators.required),
+    image3: new FormControl('',Validators.required),
+    image4: new FormControl('',Validators.required)
 }); 
   constructor(private productService : ProductApiService,private fb:FormBuilder,
               private router:Router,private route: ActivatedRoute ) { }
@@ -130,8 +130,7 @@ export class AddProductsComponent implements OnInit {
       });
     }
     Submit(){
-      if(this.product.valid ){
-        console.log(true)
+      if(this.product.valid){
       const openingStock:number=parseInt(this.product.get('opening_Stock')?.value);
       const currentStock:number=parseInt(this.product.get('current_Stock')?.value);
       const sum:number=openingStock+currentStock
