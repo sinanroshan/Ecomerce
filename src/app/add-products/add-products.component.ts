@@ -35,7 +35,7 @@ export class AddProductsComponent implements OnInit {
     category: new FormControl(null,Validators.required),
     sub_Category: new FormControl(null,Validators.required),
     unit: new FormControl('PIECE',Validators.required),
-    barcode: new FormControl(Number),
+    barcode: new FormControl(''),
     hsn_Code: new FormControl('0'),
     gst: new FormControl('',Validators.required),
     cess: new FormControl('0'),
@@ -98,7 +98,7 @@ export class AddProductsComponent implements OnInit {
       this.p_id=res;
     });
     this.product.get('productID')?.setValue(this.p_id);
-    if(this.product.get('barcode')?.value==''){
+    if(this.product.get('barcode')?.value==""){
     this.product.get('barcode')?.setValue(this.p_id);}
   }
     setCost(){
@@ -144,7 +144,6 @@ export class AddProductsComponent implements OnInit {
     }
   save(){
     this.pid();
-    //this.product.get('')
     this.productService.saveProduct(this.product.value).subscribe(res=>{
       if(res=='sved'){
         this.rest()
