@@ -19,6 +19,7 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { OrdersComponent } from './orders/orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompanyComponent } from './company/company.component';
+import { AddsComponent } from './adds/adds.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CompanyComponent } from './company/company.component';
     TopbarComponent,
     OrdersComponent,
     CompanyComponent,
+    AddsComponent,
   ],
   imports: [
     BrowserModule,

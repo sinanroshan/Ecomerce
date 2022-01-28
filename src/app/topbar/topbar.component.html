@@ -22,8 +22,9 @@
         <div class="dropdown nav navbar-nav ms-auto w-100 justify-content-end" >
           <img class="logo" src="{{company.logo}}">
           <div class="list">
+            <div class="drop_button" [routerLink]="['/adds']">Mange Adds</div>
             <div class="drop_button" [routerLink]="['/setings']">Setings</div>
-            <div class="drop_button" (click)="logout()">logout</div>
+            <div class="drop_button" (click)="logout()">Logout</div>
           </div>
           &nbsp;&nbsp;
         </div>

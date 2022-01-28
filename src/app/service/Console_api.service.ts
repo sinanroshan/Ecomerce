@@ -71,4 +71,7 @@ export class ProductApiService {
   changeStatus(invNo:number, status:string):Observable<any>{
     return this.http.get(this.productApi+'/auth/OrderStatus/'+invNo+'/'+status);
   }
+  updateAdds(adds:any){
+    return this.http.post(this.productApi+'console/changeAdd',adds,{responseType:'text'});
+  }
 }
