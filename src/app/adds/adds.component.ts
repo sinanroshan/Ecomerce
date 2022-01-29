@@ -39,7 +39,9 @@ export class AddsComponent implements OnInit {
   }
   submit(){
     this.productService.updateAdds(this.adds.value).subscribe(res=>{
-      console.log(res)
+      if(res=="sved"){
+        window.location.reload();
+      }
     })
   }
 }
